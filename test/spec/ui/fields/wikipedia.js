@@ -22,7 +22,7 @@ describe('iD.uiFieldWikipedia', function() {
             }
         };
 
-        sinon.stub(context, 'selectedIDs', function() { return [selectedId]; });
+        sinon.stub(context, 'selectedIDs').callsFake(function() { return [selectedId]; });
     });
 
     afterEach(function() {
@@ -36,7 +36,6 @@ describe('iD.uiFieldWikipedia', function() {
         wikipedia.tags({wikipedia: 'en:Title'});
         expect(iD.utilGetSetValue(selection.selectAll('.wiki-lang'))).to.equal('English');
         expect(iD.utilGetSetValue(selection.selectAll('.wiki-title'))).to.equal('Title');
-        expect(selection.selectAll('.wiki-link').attr('href')).to.equal('https://en.wikipedia.org/wiki/Title');
     });
 
     it('sets language, value, wikidata', function() {

@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import { t } from '../util/locale';
-import { modeSelect } from '../modes/index';
 import { actionSplit } from '../actions/index';
+import { behaviorOperation } from '../behavior/index';
+import { modeSelect } from '../modes/index';
 
 
 export function operationSplit(selectedIDs, context) {
@@ -10,24 +11,19 @@ export function operationSplit(selectedIDs, context) {
     });
 
     var entityId = vertices[0],
-        action = actionSplit(entityId);
+        action = actionSplit(entityId),
+        ways = [];
 
-    if (selectedIDs.length > 1) {
-        action.limitWays(_.without(selectedIDs, entityId));
+    if (vertices.length === 1) {
+        if (selectedIDs.length > 1) {
+            action.limitWays(_.without(selectedIDs, entityId));
+        }
+        ways = action.ways(context.graph());
     }
 
 
     var operation = function() {
-        var annotation;
-
-        var ways = action.ways(context.graph());
-        if (ways.length === 1) {
-            annotation = t('operations.split.annotation.' + context.geometry(ways[0].id));
-        } else {
-            annotation = t('operations.split.annotation.multiple', {n: ways.length});
-        }
-
-        var difference = context.perform(action, annotation);
+        var difference = context.perform(action, operation.annotation());
         context.enter(modeSelect(context, difference.extantIDs()));
     };
 
@@ -51,8 +47,6 @@ export function operationSplit(selectedIDs, context) {
         if (disable) {
             return t('operations.split.' + disable);
         }
-
-        var ways = action.ways(context.graph());
         if (ways.length === 1) {
             return t('operations.split.description.' + context.geometry(ways[0].id));
         } else {
@@ -61,10 +55,17 @@ export function operationSplit(selectedIDs, context) {
     };
 
 
+    operation.annotation = function() {
+        return ways.length === 1 ?
+            t('operations.split.annotation.' + context.geometry(ways[0].id)) :
+            t('operations.split.annotation.multiple', { n: ways.length });
+    };
+
+
     operation.id = 'split';
     operation.keys = [t('operations.split.key')];
     operation.title = t('operations.split.title');
-
+    operation.behavior = behaviorOperation(context).which(operation);
 
     return operation;
 }

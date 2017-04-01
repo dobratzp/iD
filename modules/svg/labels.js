@@ -1,6 +1,9 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 import rbush from 'rbush';
+import { dataFeatureIcons } from '../../data/index';
+import { textDirection } from '../util/locale';
+
 import {
     geoExtent,
     geoEuclideanDistance,
@@ -8,9 +11,15 @@ import {
     geoPolygonIntersectsPolygon,
     geoPathLength
 } from '../geo/index';
+
 import { osmEntity } from '../osm/index';
 import { utilDetect } from '../util/detect';
-import { utilDisplayName, utilEntitySelector } from '../util/index';
+
+import {
+    utilDisplayName,
+    utilDisplayNameForPath,
+    utilEntitySelector
+} from '../util/index';
 
 
 export function svgLabels(projection, context) {
@@ -134,7 +143,7 @@ export function svgLabels(projection, context) {
             .data(entities, osmEntity.key)
             .attr('startOffset', '50%')
             .attr('xlink:href', function(d) { return '#labelpath-' + d.id; })
-            .text(utilDisplayName);
+            .text(utilDisplayNameForPath);
     }
 
 
@@ -176,7 +185,7 @@ export function svgLabels(projection, context) {
 
 
     function drawAreaIcons(selection, entities, filter, classes, labels) {
-        var icons = selection.selectAll('use')
+        var icons = selection.selectAll('use.' + classes)
             .filter(filter)
             .data(entities, osmEntity.key);
 
@@ -185,16 +194,23 @@ export function svgLabels(projection, context) {
 
         icons = icons.enter()
             .append('use')
-            .attr('class', 'icon areaicon')
-            .attr('width', '18px')
-            .attr('height', '18px')
+            .attr('class', 'icon ' + classes)
+            .attr('width', '17px')
+            .attr('height', '17px')
             .merge(icons);
 
         icons
             .attr('transform', get(labels, 'transform'))
             .attr('xlink:href', function(d) {
-                var icon = context.presets().match(d, context.graph()).icon;
-                return '#' + icon + (icon === 'hairdresser' ? '-24': '-18');    // workaround: maki hairdresser-18 broken?
+                var preset = context.presets().match(d, context.graph()),
+                    picon = preset && preset.icon;
+
+                if (!picon)
+                    return '';
+                else {
+                    var isMaki = dataFeatureIcons.indexOf(picon) !== -1;
+                    return '#' + picon + (isMaki ? '-15' : '');
+                }
             });
     }
 
@@ -313,9 +329,11 @@ export function svgLabels(projection, context) {
                 entity = labelable[k][i];
                 geometry = entity.geometry(graph);
 
-                var name = utilDisplayName(entity),
+                var getName = (geometry === 'line') ? utilDisplayNameForPath : utilDisplayName,
+                    name = getName(entity),
                     width = name && textWidth(name, fontSize),
                     p;
+
                 if (geometry === 'point') {
                     p = getPointLabel(entity, width, fontSize, geometry);
                 } else if (geometry === 'vertex' && !lowZoom) {
@@ -346,7 +364,6 @@ export function svgLabels(projection, context) {
 
             var coord = projection(entity.loc),
                 margin = 2,
-                textDirection = detected.textDirection,
                 offset = pointOffsets[textDirection],
                 p = {
                     height: height,
@@ -494,7 +511,7 @@ export function svgLabels(projection, context) {
 
             if (isNaN(centroid[0]) || entitywidth < 20) return;
 
-            var iconSize = 18,
+            var iconSize = 20,
                 iconX = centroid[0] - (iconSize / 2),
                 iconY = centroid[1] - (iconSize / 2),
                 margin = 2,
@@ -583,7 +600,8 @@ export function svgLabels(projection, context) {
         // areas
         drawAreaLabels(label, labelled.area, filter, 'arealabel', positions.area);
         drawAreaLabels(halo, labelled.area, filter, 'arealabel-halo', positions.area);
-        drawAreaIcons(label, labelled.area, filter, 'arealabel-icon', positions.area);
+        drawAreaIcons(label, labelled.area, filter, 'areaicon', positions.area);
+        drawAreaIcons(halo, labelled.area, filter, 'areaicon-halo', positions.area);
 
         // debug
         drawCollisionBoxes(label, rskipped, 'debug-skipped');

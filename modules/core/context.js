@@ -23,6 +23,24 @@ export function setAreaKeys(value) {
 
 
 export function coreContext() {
+
+    // create a special translation that contains the keys in place of the strings
+    var tkeys = _.cloneDeep(dataEn);
+    var parents = [];
+
+    function traverser(v, k, obj) {
+        parents.push(k);
+        if (_.isObject(v)) {
+            _.forOwn(v, traverser);
+        } else if (_.isString(v)) {
+            obj[k] = parents.join('.');
+        }
+        parents.pop();
+    }
+
+    _.forOwn(tkeys, traverser);
+    addTranslation('_tkeys_', tkeys);
+
     addTranslation('en', dataEn);
     setLocale('en');
 
@@ -131,9 +149,25 @@ export function coreContext() {
     };
 
     context.save = function() {
-        if (inIntro || (mode && mode.id === 'save') || d3.select('.modal').size()) return;
-        history.save();
-        if (history.hasChanges()) return t('save.unsaved_changes');
+        // no history save, no message onbeforeunload
+        if (inIntro || d3.select('.modal').size()) return;
+
+        var canSave;
+        if (mode && mode.id === 'save') {
+            canSave = false;
+        } else {
+            canSave = context.selectedIDs().every(function(id) {
+                var entity = context.hasEntity(id);
+                return entity && !entity.isDegenerate();
+            });
+        }
+
+        if (canSave) {
+            history.save();
+        }
+        if (history.hasChanges()) {
+            return t('save.unsaved_changes');
+        }
     };
 
 
@@ -346,7 +380,7 @@ export function coreContext() {
 
 
     /* Init */
-    context.version = '2.0.1';
+    context.version = '2.1.3';
 
     context.projection = geoRawMercator();
 

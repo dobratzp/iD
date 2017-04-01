@@ -57,11 +57,23 @@
         },
         {
             "key": "aerialway",
+            "value": "drag_lift"
+        },
+        {
+            "key": "aerialway",
             "value": "gondola"
         },
         {
             "key": "aerialway",
+            "value": "goods"
+        },
+        {
+            "key": "aerialway",
             "value": "magic_carpet"
+        },
+        {
+            "key": "aerialway",
+            "value": "mixed_lift"
         },
         {
             "key": "aerialway",
@@ -117,11 +129,31 @@
         },
         {
             "key": "amenity",
+            "value": "coworking_space"
+        },
+        {
+            "key": "amenity",
+            "value": "nursing_home"
+        },
+        {
+            "key": "amenity",
             "value": "register_office"
         },
         {
             "key": "amenity",
             "value": "swimming_pool"
+        },
+        {
+            "key": "amenity",
+            "value": "animal_boarding"
+        },
+        {
+            "key": "amenity",
+            "value": "animal_breeding"
+        },
+        {
+            "key": "amenity",
+            "value": "animal_shelter"
         },
         {
             "key": "amenity",
@@ -233,10 +265,6 @@
         },
         {
             "key": "amenity",
-            "value": "coworking_space"
-        },
-        {
-            "key": "amenity",
             "value": "crematorium"
         },
         {
@@ -254,6 +282,10 @@
         {
             "key": "amenity",
             "value": "drinking_water"
+        },
+        {
+            "key": "amenity",
+            "value": "driving_school"
         },
         {
             "key": "amenity",
@@ -440,6 +472,10 @@
             "value": "homeless"
         },
         {
+            "key": "social_facility:for",
+            "value": "senior"
+        },
+        {
             "key": "amenity",
             "value": "studio"
         },
@@ -528,6 +564,10 @@
             "value": "water_point"
         },
         {
+            "key": "amenity",
+            "value": "watering_place"
+        },
+        {
             "key": "area",
             "value": "yes"
         },
@@ -548,6 +588,10 @@
         {
             "key": "barrier",
             "value": "bollard"
+        },
+        {
+            "key": "barrier",
+            "value": "border_control"
         },
         {
             "key": "barrier",
@@ -751,6 +795,9 @@
         {
             "key": "camp_site",
             "value": "camp_pitch"
+        },
+        {
+            "key": "club"
         },
         {
             "key": "craft"
@@ -1168,6 +1215,10 @@
         },
         {
             "key": "highway",
+            "value": "speed_camera"
+        },
+        {
+            "key": "highway",
             "value": "steps"
         },
         {
@@ -1247,6 +1298,10 @@
         },
         {
             "key": "historic",
+            "value": "tomb"
+        },
+        {
+            "key": "historic",
             "value": "wayside_cross"
         },
         {
@@ -1267,6 +1322,10 @@
         {
             "key": "landuse",
             "value": "allotments"
+        },
+        {
+            "key": "landuse",
+            "value": "aquaculture"
         },
         {
             "key": "landuse",
@@ -1310,6 +1369,10 @@
         },
         {
             "key": "landuse",
+            "value": "harbour"
+        },
+        {
+            "key": "landuse",
             "value": "industrial"
         },
         {
@@ -1325,6 +1388,50 @@
             "value": "military"
         },
         {
+            "key": "military",
+            "value": "airfield"
+        },
+        {
+            "key": "military",
+            "value": "barracks"
+        },
+        {
+            "key": "military",
+            "value": "bunker"
+        },
+        {
+            "key": "military",
+            "value": "checkpoint"
+        },
+        {
+            "key": "military",
+            "value": "danger_area"
+        },
+        {
+            "key": "military",
+            "value": "naval_base"
+        },
+        {
+            "key": "military",
+            "value": "nuclear_explosion_site"
+        },
+        {
+            "key": "military",
+            "value": "obstacle_course"
+        },
+        {
+            "key": "military",
+            "value": "office"
+        },
+        {
+            "key": "military",
+            "value": "range"
+        },
+        {
+            "key": "military",
+            "value": "training_area"
+        },
+        {
             "key": "landuse",
             "value": "orchard"
         },
@@ -1335,6 +1442,10 @@
         {
             "key": "landuse",
             "value": "quarry"
+        },
+        {
+            "key": "landuse",
+            "value": "railway"
         },
         {
             "key": "landuse",
@@ -1405,6 +1516,10 @@
         },
         {
             "key": "leisure",
+            "value": "horse_riding"
+        },
+        {
+            "key": "leisure",
             "value": "ice_rink"
         },
         {
@@ -1449,6 +1564,14 @@
         },
         {
             "key": "sport",
+            "value": "cricket"
+        },
+        {
+            "key": "sport",
+            "value": "equestrian"
+        },
+        {
+            "key": "sport",
             "value": "rugby_league"
         },
         {
@@ -1462,6 +1585,10 @@
         {
             "key": "sport",
             "value": "soccer"
+        },
+        {
+            "key": "sport",
+            "value": "table_tennis"
         },
         {
             "key": "sport",
@@ -1623,43 +1750,11 @@
             "value": "works"
         },
         {
-            "key": "military",
-            "value": "airfield"
-        },
-        {
-            "key": "military",
-            "value": "barracks"
-        },
-        {
-            "key": "military",
-            "value": "bunker"
-        },
-        {
-            "key": "military",
-            "value": "checkpoint"
-        },
-        {
-            "key": "military",
-            "value": "danger_area"
-        },
-        {
-            "key": "military",
-            "value": "naval_base"
-        },
-        {
-            "key": "military",
-            "value": "obstacle_course"
-        },
-        {
-            "key": "military",
-            "value": "range"
-        },
-        {
-            "key": "military",
-            "value": "training_area"
-        },
-        {
             "key": "natural"
+        },
+        {
+            "key": "natural",
+            "value": "bare_rock"
         },
         {
             "key": "natural",
@@ -1703,7 +1798,15 @@
         },
         {
             "key": "natural",
+            "value": "ridge"
+        },
+        {
+            "key": "natural",
             "value": "saddle"
+        },
+        {
+            "key": "natural",
+            "value": "sand"
         },
         {
             "key": "natural",
@@ -1754,6 +1857,10 @@
             "value": "wood"
         },
         {
+            "key": "noexit",
+            "value": "yes"
+        },
+        {
             "key": "office"
         },
         {
@@ -1775,6 +1882,10 @@
         {
             "key": "office",
             "value": "company"
+        },
+        {
+            "key": "office",
+            "value": "coworking"
         },
         {
             "key": "office",
@@ -1811,6 +1922,10 @@
         {
             "key": "office",
             "value": "lawyer"
+        },
+        {
+            "key": "lawyer",
+            "value": "notary"
         },
         {
             "key": "office",
@@ -1873,6 +1988,14 @@
         },
         {
             "key": "place",
+            "value": "quarter"
+        },
+        {
+            "key": "place",
+            "value": "square"
+        },
+        {
+            "key": "place",
             "value": "suburb"
         },
         {
@@ -1898,6 +2021,10 @@
         {
             "key": "power",
             "value": "minor_line"
+        },
+        {
+            "key": "power",
+            "value": "plant"
         },
         {
             "key": "power",
@@ -1974,6 +2101,10 @@
         {
             "key": "railway",
             "value": "subway"
+        },
+        {
+            "key": "railway",
+            "value": "tram_stop"
         },
         {
             "key": "railway",
@@ -2208,6 +2339,10 @@
         },
         {
             "key": "shop",
+            "value": "gas"
+        },
+        {
+            "key": "shop",
             "value": "gift"
         },
         {
@@ -2336,6 +2471,10 @@
         },
         {
             "key": "shop",
+            "value": "perfumery"
+        },
+        {
+            "key": "shop",
             "value": "pet"
         },
         {
@@ -2433,6 +2572,10 @@
         {
             "key": "shop",
             "value": "video"
+        },
+        {
+            "key": "shop",
+            "value": "watches"
         },
         {
             "key": "shop",
@@ -2735,6 +2878,10 @@
         {
             "key": "waterway",
             "value": "water_point"
+        },
+        {
+            "key": "waterway",
+            "value": "waterfall"
         },
         {
             "key": "waterway",

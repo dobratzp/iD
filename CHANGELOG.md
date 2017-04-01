@@ -1,5 +1,122 @@
 :warning: = Breaking change, may affect downstream projects or sites that embed iD.
 
+## 2.1.3
+##### Feb 24, 2017
+* Bugfixes:
+  * Check all blacklist regexs in API imagery blacklist (#3858, thanks @tyrasd)
+  * Remove autocorrect/spellcheck features from inputs (#3839)
+  * Better detection of culture-specific locale in language list (#3842)
+* Presets:
+  * Adjust aeroway runway, taxiway, apron styles for visibility (#3845)
+  * Add preset for landuse=aquaculture (#3849, thanks @willemarcel)
+  * Update UK/IE placeholders (#3837, thanks @boothym)
+  * Add social_facility=nursing_home preset
+
+## 2.1.2
+##### Feb 7, 2017
+* Bugfixes:
+  * Fix point dragging regression (#3829)
+
+## 2.1.1
+##### Feb 6, 2017
+* Bugfixes:
+  * Fix issues with dragging sibling nodes of a selected way (#3824)
+  * Fix map centering for custom KML and GeoJSON layers (#3826, thanks @tyrasd)
+  * Fix regression in GPX layer loading from URL (#3820, thanks @tyrasd)
+* Presets:
+  * Add presets NoExit, Watch Shop, add Living Street to Road category (#3821, thanks @willemarcel)
+
+## 2.1.0
+##### Feb 4, 2017
+* Bugfixes:
+  * Improve tests for line joins in walkthrough (#3695)
+  * Fix country code lookup / address,phone fields on IE11 (Object.assign issue)
+  * Show "You have unsaved changes" message also in save mode (#3788, thanks @tyrasd)
+  * Eliminate duplicates from commit message dropdown (#3759, thanks @Abbe98)
+  * Don't create extra combobox caret divs in the address field (#3715)
+  * Fix issue with mouse coordinates while dragging and nudging/zooming (#3594)
+  * Fix for lasso behavior missing mouseup event (#3800)
+  * Fix spinner position when UI is RTL (#3794)
+  * Don't write history while user is in draw_line/draw_way, etc (#3750)
+  * Don't show radial menu when selecting entity from member/membership editor
+  * More checks to prevent duplicate consecutive nodes (#3676, #1296, thanks @slhh)
+  * Fix RTL languages along linestring paths on Chrome and Safari (#3707, thanks @miladkdz)
+  * When merging node to area, preserve original node if possible (#3683)
+  * Allow double-clicking on midpoints to create vertex (#3687, thanks @edpop)
+  * Don't jump cursor to end of line when editing housenumber (#3650)
+* Usability improvements:
+  * Warn if user creates an untagged relation (#3812)
+  * Improve save flow so user knows there is more to do after clicking Save (#3777, #2378)
+    * Desaturate the map to call attention to upload pane
+    * Don't show two save buttons, rename one to Upload
+    * Show icon with the Save button
+  * Warn if user creates an unconneted highway (#3786)
+  * Draw slightly larger circles for unconneted vertices (#3775)
+  * Use 'pt' wiki pages in 'pt-BR' iD localization (#3776)
+  * User must select nodes before dragging them (#3739, thanks @edpop)
+* New Features:
+  * Add KML and GeoJSON support to GPX layer (#3811, thanks @mertemin)
+  * Add language debugging mode that shows translation keys (#3755)
+  * Upgrade to MapillaryJS viewer v2.4
+  * Add ability to restart ui and change locale on the fly (#3764, thanks @kepta)
+  * Upgrade to latest maki icons (#3024, #3756, thanks @ajithranka)
+    * Includes icon for tourism information objects (#3573)
+    * Includes icon for subway_entrance (#3255)
+  * Support replacing the geocoder service (#3754, thanks @kepta)
+    * :warning: `iD.services.nominatim` is now `iD.services.geocoder`
+  * Support smoothly transitioned actions (#3659)
+  * Add Reflect Long / Reflect Short operations (#3555, #3375, thanks @Psigio)
+  * Improved address field customization, allow country-specific placeholders (#3643, thanks @Natsuyasumi)
+* Performance:
+  * Use the same ids for temporary nodes and ways created in draw modes (#1369)
+* Presets:
+  * Add Notary preset (#3813, thanks @Zverik)
+  * Add additional aerialway presets (#3733, thanks @ajithranka)
+  * Add natural features category (#2843, thanks @ajithranka)
+  * Add step_count field to Steps preset (#3740, thanks @boothym)
+  * Add universal email and fax fields (#3735, thanks @M1dgard)
+  * Show tracktype as first field for Track preset (#3718)
+  * Add preset for place=square (#3658)
+  * Add preset for leisure=horse_riding (#3619)
+  * Add presets for barrier=toll_booth, barrier=border_control (#3719)
+  * Improve Social Facility presets (#3702)
+  * Improve military presets (#3663)
+  * Add presets for natural Bare Rock, Ridge, Sand (#3646)
+  * Add outdoor_seating checkbox (#3730, thanks @mertemin)
+  * Improve Turkish address scheme (#3729, thanks @mertemin)
+  * Prefer office=coworking over amenity=coworking_space (#3714, thanks @iandees)
+  * Improve Japanese address scheme (#3712, thanks @Natsuyasumi)
+  * Add fire_hydrant:position field to presets (#3708, thanks @wopfel)
+  * Add Castle Type field to Castle preset (#3685, thanks @abdeldjalil09)
+  * Add Taiwan phone format (#3655, thanks @Supaplextw)
+
+## 2.0.2
+##### Dec 22, 2016
+* Bugfixes:
+  * Update imageryBlacklists function to use blacklists from OSM API (#3623)
+  * Better checks for invalid ids in Select mode (#3640)
+  * Unable to toggle oneway=yes on highways (#3638)
+  * Hide labels along selected ways or near selected vertices (#3636)
+  * Windows/Chrome bug: missing mouseup was getting users stuck and unable to select features (#2151)
+  * Fix map moving with middle mouse click (#3612)
+* New Features:
+  * Pull LTR/RTL list from Transifex instead of hardcoding it (#3489)
+  * Refocus map and selectedIDs on undo/redo (#2204)
+  * Display labels for vertices (#2709)
+* Presets:
+  * Add Waterfall Preset (#3608)
+  * Adjust matchscores so that barrier doesn't take priority over other features (#3647)
+  * Add Public Bath Preset (#3642, thanks @Natsuyasumi)
+  * Remove "Covered" field from Bus Stop preset (#3627)
+  * Add surveillance and camera related presets (#3599, thanks @bkil)
+  * Add amenity=food_court and amenity=crematorium (#3621, thanks @samely)
+  * Add maxheight field and add it to many highway presets (#3605)
+  * Add fence and wall type fields, add height field to some barriers (#3602)
+  * Add presets for Aquarium, Resort, Dance Hall (#3579)
+  * Add Internet Access fields to many presets (#3568, thanks @bkil)
+  * Add highway=traffic_mirror preset (#3568, thanks @bkil)
+  * Improvements to Mast/Tower presets (#3561, thanks @bkil)
+
 ## 2.0.1
 ##### Nov 17, 2016
 * Bugfixes:

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { t } from '../util/locale';
 import { actionStraighten } from '../actions/index';
+import { behaviorOperation } from '../behavior/index';
 
 
 export function operationStraighten(selectedIDs, context) {
@@ -9,8 +10,7 @@ export function operationStraighten(selectedIDs, context) {
 
 
     function operation() {
-        var annotation = t('operations.straighten.annotation');
-        context.perform(action, annotation);
+        context.perform(action, operation.annotation());
     }
 
 
@@ -40,10 +40,15 @@ export function operationStraighten(selectedIDs, context) {
     };
 
 
+    operation.annotation = function() {
+        return t('operations.straighten.annotation');
+    };
+
+
     operation.id = 'straighten';
     operation.keys = [t('operations.straighten.key')];
     operation.title = t('operations.straighten.title');
-
+    operation.behavior = behaviorOperation(context).which(operation);
 
     return operation;
 }

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { dataFeatureIcons } from '../../data/index';
 import { osmEntity } from '../osm/index';
 import { svgPointTransform, svgTagClasses } from './index';
 
@@ -46,10 +47,10 @@ export function svgPoints(projection, context) {
             .call(markerPath, 'stroke');
 
         enter.append('use')
-            .attr('transform', 'translate(-6, -20)')
+            .attr('transform', 'translate(-5, -19)')
             .attr('class', 'icon')
-            .attr('width', '12px')
-            .attr('height', '12px');
+            .attr('width', '11px')
+            .attr('height', '11px');
 
         groups = groups
             .merge(enter)
@@ -62,8 +63,15 @@ export function svgPoints(projection, context) {
         groups.select('.stroke');
         groups.select('.icon')
             .attr('xlink:href', function(entity) {
-                var preset = context.presets().match(entity, graph);
-                return (preset && preset.icon) ? '#' + preset.icon + '-12' : '';
+                var preset = context.presets().match(entity, graph),
+                    picon = preset && preset.icon;
+
+                if (!picon)
+                    return '';
+                else {
+                    var isMaki = dataFeatureIcons.indexOf(picon) !== -1;
+                    return '#' + picon + (isMaki ? '-11' : '');
+                }
             });
     };
 }

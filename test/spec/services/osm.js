@@ -333,74 +333,8 @@ describe('iD.serviceOsm', function () {
     });
 
 
-    describe('#osmChangeJXON', function() {
-        it('converts change data to JXON', function() {
-            var jxon = connection.osmChangeJXON('1234', {created: [], modified: [], deleted: []});
-
-            expect(jxon).to.eql({
-                osmChange: {
-                    '@version': 0.6,
-                    '@generator': 'iD',
-                    'create': {},
-                    'modify': {},
-                    'delete': {'@if-unused': true}
-                }
-            });
-        });
-
-        it('includes creations ordered by nodes, ways, relations', function() {
-            var n = iD.Node({loc: [0, 0]}),
-                w = iD.Way(),
-                r = iD.Relation(),
-                changes = {created: [r, w, n], modified: [], deleted: []},
-                jxon = connection.osmChangeJXON('1234', changes);
-
-            expect(d3.entries(jxon.osmChange.create)).to.eql([
-                {key: 'node', value: [n.asJXON('1234').node]},
-                {key: 'way', value: [w.asJXON('1234').way]},
-                {key: 'relation', value: [r.asJXON('1234').relation]}
-            ]);
-        });
-
-        it('includes modifications', function() {
-            var n = iD.Node({loc: [0, 0]}),
-                w = iD.Way(),
-                r = iD.Relation(),
-                changes = {created: [], modified: [r, w, n], deleted: []},
-                jxon = connection.osmChangeJXON('1234', changes);
-
-            expect(jxon.osmChange.modify).to.eql({
-                node: [n.asJXON('1234').node],
-                way: [w.asJXON('1234').way],
-                relation: [r.asJXON('1234').relation]
-            });
-        });
-
-        it('includes deletions ordered by relations, ways, nodes', function() {
-            var n = iD.Node({loc: [0, 0]}),
-                w = iD.Way(),
-                r = iD.Relation(),
-                changes = {created: [], modified: [], deleted: [n, w, r]},
-                jxon = connection.osmChangeJXON('1234', changes);
-
-            expect(d3.entries(jxon.osmChange.delete)).to.eql([
-                {key: 'relation', value: [r.asJXON('1234').relation]},
-                {key: 'way', value: [w.asJXON('1234').way]},
-                {key: 'node', value: [n.asJXON('1234').node]},
-                {key: '@if-unused', value: true}
-            ]);
-        });
-    });
-
     describe('#userChangesets', function() {
-        var server,
-            userDetailsFn,
-            changesetsXML = '<?xml version="1.0" encoding="UTF-8"?><osm>' +
-                '<changeset id="36777543" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
-                '<tag k="comment" v="Caprice Court has been extended"/>' +
-                '<tag k="created_by" v="iD 2.0.0"/>' +
-                '</changeset>' +
-                '</osm>';
+        var server, userDetailsFn;
 
         beforeEach(function() {
             server = sinon.fakeServer.create();
@@ -415,14 +349,17 @@ describe('iD.serviceOsm', function () {
             connection.userDetails = userDetailsFn;
         });
 
+
         it('loads user changesets', function(done) {
-            // preauthenticate, otherwise callback will be called with "not authenticated" err
-            connection.switch({
-                oauth_consumer_key: '5A043yRSEugj4DJ5TljuapfnrflWDte8jTOcWLlT',
-                oauth_secret: 'aB3jKq1TRsCOUrfOIZ6oQMEDmv2ptV76PA54NGLL',
-                oauth_token: 'foo',
-                oauth_token_secret: 'foo'
-            });
+            var changesetsXML = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<osm>' +
+                '<changeset id="36777543" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
+                '  <tag k="comment" v="Caprice Court has been extended"/>' +
+                '  <tag k="created_by" v="iD 2.0.0"/>' +
+                '</changeset>' +
+                '</osm>';
+
+            login();
             connection.userChangesets(function(err, changesets) {
                 expect(changesets).to.deep.equal([{
                     tags: {
@@ -438,13 +375,68 @@ describe('iD.serviceOsm', function () {
                 [200, { 'Content-Type': 'text/xml' }, changesetsXML]);
             server.respond();
         });
+
+        it('excludes changesets without comment tag', function(done) {
+            var changesetsXML = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<osm>' +
+                '<changeset id="36777543" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
+                '  <tag k="comment" v="Caprice Court has been extended"/>' +
+                '  <tag k="created_by" v="iD 2.0.0"/>' +
+                '</changeset>' +
+                '<changeset id="36777544" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
+                '  <tag k="created_by" v="iD 2.0.0"/>' +
+                '</changeset>' +
+                '</osm>';
+
+            login();
+            connection.userChangesets(function(err, changesets) {
+                expect(changesets).to.deep.equal([{
+                    tags: {
+                        comment: 'Caprice Court has been extended',
+                        created_by: 'iD 2.0.0'
+                    }
+                }]);
+                connection.logout();
+                done();
+            });
+
+            server.respondWith('GET', 'http://www.openstreetmap.org/api/0.6/changesets?user=1',
+                [200, { 'Content-Type': 'text/xml' }, changesetsXML]);
+            server.respond();
+        });
+
+        it('excludes changesets with empty comment', function(done) {
+            var changesetsXML = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<osm>' +
+                '<changeset id="36777543" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
+                '  <tag k="comment" v="Caprice Court has been extended"/>' +
+                '  <tag k="created_by" v="iD 2.0.0"/>' +
+                '</changeset>' +
+                '<changeset id="36777544" user="Steve" uid="1" created_at="2016-01-24T15:02:06Z" closed_at="2016-01-24T15:02:07Z" open="false" min_lat="39.3823819" min_lon="-104.8639728" max_lat="39.3834184" max_lon="-104.8618622" comments_count="0">' +
+                '  <tag k="comment" v=""/>' +
+                '  <tag k="created_by" v="iD 2.0.0"/>' +
+                '</changeset>' +
+                '</osm>';
+
+            login();
+            connection.userChangesets(function(err, changesets) {
+                expect(changesets).to.deep.equal([{
+                    tags: {
+                        comment: 'Caprice Court has been extended',
+                        created_by: 'iD 2.0.0'
+                    }
+                }]);
+                connection.logout();
+                done();
+            });
+
+            server.respondWith('GET', 'http://www.openstreetmap.org/api/0.6/changesets?user=1',
+                [200, { 'Content-Type': 'text/xml' }, changesetsXML]);
+            server.respond();
+        });
+
     });
 
-    describe('#changesetTags', function() {
-        it('omits comment when empty', function() {
-            expect(connection.changesetTags('2.0.0', '', [])).not.to.have.property('comment');
-        });
-    });
 
     describe('API capabilities', function() {
         var server,

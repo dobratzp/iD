@@ -1,33 +1,61 @@
 import { t } from '../util/locale';
 import {
+    actionChangePreset,
     actionJoin,
     actionMerge,
     actionMergePolygon
-} from '../actions/index';
+} from '../actions';
 
-import { modeSelect } from '../modes/index';
+import { behaviorOperation } from '../behavior';
+import { modeSelect } from '../modes';
 
 
 export function operationMerge(selectedIDs, context) {
+
+    function updatePresetTags(oldGraph, newGraph, ids) {
+        var id = ids[0],
+            oldEntity = oldGraph.hasEntity(id),
+            newEntity = newGraph.hasEntity(id);
+
+        if (!oldEntity || !newEntity) return;
+
+        var oldPreset = context.presets().match(oldEntity, oldGraph),
+            newPreset = context.presets().match(newEntity, newGraph);
+
+        context.replace(actionChangePreset(id, oldPreset, newPreset));
+    }
+
+
     var join = actionJoin(selectedIDs),
         merge = actionMerge(selectedIDs),
         mergePolygon = actionMergePolygon(selectedIDs);
 
+
     var operation = function() {
-        var annotation = t('operations.merge.annotation', {n: selectedIDs.length}),
+        var origGraph = context.graph(),
             action;
 
-        if (!join.disabled(context.graph())) {
+        if (!join.disabled(origGraph)) {
             action = join;
-        } else if (!merge.disabled(context.graph())) {
+        } else if (!merge.disabled(origGraph)) {
             action = merge;
         } else {
             action = mergePolygon;
         }
 
-        context.perform(action, annotation);
-        var ids = selectedIDs.filter(function(id) { return context.hasEntity(id); });
-        context.enter(modeSelect(context, ids).suppressMenu(true));
+        context.perform(action, operation.annotation());
+
+        var ids = selectedIDs.filter(function(id) {
+            var entity = context.hasEntity(id);
+            return entity && entity.type !== 'node';
+        });
+
+        // if we merged tags, rematch preset and update tags if necessary (#3851)
+        if (action === merge) {
+            updatePresetTags(origGraph, context.graph(), ids);
+        }
+
+        context.enter(modeSelect(context, ids));
     };
 
 
@@ -65,10 +93,15 @@ export function operationMerge(selectedIDs, context) {
     };
 
 
+    operation.annotation = function() {
+        return t('operations.merge.annotation', { n: selectedIDs.length });
+    };
+
+
     operation.id = 'merge';
     operation.keys = [t('operations.merge.key')];
     operation.title = t('operations.merge.title');
-
+    operation.behavior = behaviorOperation(context).which(operation);
 
     return operation;
 }

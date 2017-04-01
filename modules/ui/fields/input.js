@@ -2,8 +2,12 @@ import * as d3 from 'd3';
 import { t } from '../../util/locale';
 import { dataPhoneFormats } from '../../../data/index';
 import { services } from '../../services/index';
-import { utilRebind } from '../../util/rebind';
-import { utilGetSetValue } from '../../util/get_set_value';
+import {
+    utilGetSetValue,
+    utilNoAuto,
+    utilRebind
+} from '../../util';
+
 
 export {
     uiFieldText as uiFieldUrl,
@@ -15,7 +19,7 @@ export {
 
 export function uiFieldText(field, context) {
     var dispatch = d3.dispatch('change'),
-        nominatim = services.nominatim,
+        nominatim = services.geocoder,
         input,
         entity;
 
@@ -31,6 +35,7 @@ export function uiFieldText(field, context) {
             .attr('type', field.type)
             .attr('id', fieldId)
             .attr('placeholder', field.placeholder() || t('inspector.unknown'))
+            .call(utilNoAuto)
             .merge(input);
 
         input

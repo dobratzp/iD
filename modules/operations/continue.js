@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { t } from '../util/locale';
 import { modeDrawLine } from '../modes/index';
+import { behaviorOperation } from '../behavior/index';
 
 
 export function operationContinue(selectedIDs, context) {
@@ -14,6 +15,7 @@ export function operationContinue(selectedIDs, context) {
     function candidateWays() {
         return graph.parentWays(vertex).filter(function(parent) {
             return parent.geometry(graph) === 'line' &&
+                !parent.isClosed() &&
                 parent.affix(vertex.id) &&
                 (geometries.line.length === 0 || geometries.line[0] === parent);
         });
@@ -51,10 +53,15 @@ export function operationContinue(selectedIDs, context) {
     };
 
 
+    operation.annotation = function() {
+        return t('operations.continue.annotation.line');
+    };
+
+
     operation.id = 'continue';
     operation.keys = [t('operations.continue.key')];
     operation.title = t('operations.continue.title');
-
+    operation.behavior = behaviorOperation(context).which(operation);
 
     return operation;
 }

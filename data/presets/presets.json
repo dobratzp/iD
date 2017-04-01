@@ -207,6 +207,19 @@
             },
             "name": "Chair Lift"
         },
+        "aerialway/drag_lift": {
+            "geometry": [
+                "line"
+            ],
+            "fields": [
+                "aerialway/capacity",
+                "aerialway/duration"
+            ],
+            "tags": {
+                "aerialway": "drag_lift"
+            },
+            "name": "Drag Lift"
+        },
         "aerialway/gondola": {
             "geometry": [
                 "line"
@@ -223,6 +236,19 @@
             },
             "name": "Gondola"
         },
+        "aerialway/goods": {
+            "geometry": [
+                "line"
+            ],
+            "fields": [
+                "aerialway/capacity",
+                "aerialway/duration"
+            ],
+            "tags": {
+                "aerialway": "goods"
+            },
+            "name": "Goods Aerialway"
+        },
         "aerialway/magic_carpet": {
             "geometry": [
                 "line"
@@ -236,6 +262,22 @@
                 "aerialway": "magic_carpet"
             },
             "name": "Magic Carpet Lift"
+        },
+        "aerialway/mixed_lift": {
+            "geometry": [
+                "line"
+            ],
+            "fields": [
+                "aerialway/occupancy",
+                "aerialway/capacity",
+                "aerialway/duration",
+                "aerialway/bubble",
+                "aerialway/heating"
+            ],
+            "tags": {
+                "aerialway": "mixed_lift"
+            },
+            "name": "Mixed Lift"
         },
         "aerialway/platter": {
             "geometry": [
@@ -285,6 +327,7 @@
             "name": "Rope Tow Lift"
         },
         "aerialway/station": {
+            "icon": "aerialway",
             "geometry": [
                 "point",
                 "vertex"
@@ -365,7 +408,7 @@
             "tags": {
                 "aeroway": "gate"
             },
-            "name": "Airport gate"
+            "name": "Airport Gate"
         },
         "aeroway/hangar": {
             "geometry": [
@@ -384,6 +427,9 @@
             "geometry": [
                 "point",
                 "area"
+            ],
+            "fields": [
+                "ref"
             ],
             "terms": [
                 "helicopter",
@@ -428,6 +474,7 @@
             "name": "Taxiway"
         },
         "aeroway/terminal": {
+            "icon": "airport",
             "geometry": [
                 "point",
                 "area"
@@ -443,7 +490,48 @@
             "tags": {
                 "aeroway": "terminal"
             },
-            "name": "Airport terminal"
+            "name": "Airport Terminal"
+        },
+        "amenity/coworking_space": {
+            "icon": "commercial",
+            "fields": [
+                "address",
+                "building_area",
+                "opening_hours",
+                "internet_access",
+                "internet_access/fee",
+                "internet_access/ssid"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "amenity": "coworking_space"
+            },
+            "name": "Coworking Space",
+            "searchable": false
+        },
+        "amenity/nursing_home": {
+            "icon": "wheelchair",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "social_facility",
+                "social_facility_for",
+                "opening_hours",
+                "wheelchair"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "amenity": "nursing_home"
+            },
+            "name": "Nursing Home",
+            "searchable": false
         },
         "amenity/register_office": {
             "icon": "town-hall",
@@ -457,7 +545,6 @@
                 "point",
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "amenity": "register_office"
             },
@@ -476,6 +563,101 @@
             },
             "name": "Swimming Pool",
             "searchable": false
+        },
+        "amenity/animal_boarding": {
+            "icon": "veterinary",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours",
+                "animal_boarding"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "boarding",
+                "cat",
+                "dog",
+                "horse",
+                "kitten",
+                "pet boarding",
+                "pet care",
+                "pet hotel",
+                "puppy",
+                "reptile"
+            ],
+            "tags": {
+                "amenity": "animal_boarding"
+            },
+            "name": "Animal Boarding Facility"
+        },
+        "amenity/animal_breeding": {
+            "icon": "veterinary",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours",
+                "animal_breeding"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "breeding",
+                "bull",
+                "cat",
+                "cow",
+                "dog",
+                "horse",
+                "husbandry",
+                "kitten",
+                "livestock",
+                "pet breeding",
+                "puppy",
+                "reptile"
+            ],
+            "tags": {
+                "amenity": "animal_breeding"
+            },
+            "name": "Animal Breeding Facility"
+        },
+        "amenity/animal_shelter": {
+            "icon": "veterinary",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours",
+                "animal_shelter"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "adoption",
+                "aspca",
+                "cat",
+                "dog",
+                "horse",
+                "kitten",
+                "pet care",
+                "pet rescue",
+                "puppy",
+                "raptor",
+                "reptile",
+                "rescue",
+                "spca"
+            ],
+            "tags": {
+                "amenity": "animal_shelter"
+            },
+            "name": "Animal Shelter"
         },
         "amenity/arts_centre": {
             "icon": "theatre",
@@ -575,6 +757,7 @@
             "name": "Bar"
         },
         "amenity/bbq": {
+            "icon": "bbq",
             "fields": [
                 "covered",
                 "fuel"
@@ -592,6 +775,7 @@
             "name": "Barbecue/Grill"
         },
         "amenity/bench": {
+            "icon": "poi-bench",
             "fields": [
                 "backrest"
             ],
@@ -821,6 +1005,7 @@
             "name": "Car Wash"
         },
         "amenity/casino": {
+            "icon": "poi-dice",
             "fields": [
                 "operator",
                 "address",
@@ -933,6 +1118,7 @@
             "name": "Clinic"
         },
         "amenity/clock": {
+            "icon": "poi-clock",
             "fields": [
                 "support",
                 "display",
@@ -1014,29 +1200,6 @@
                 "amenity": "courthouse"
             },
             "name": "Courthouse"
-        },
-        "amenity/coworking_space": {
-            "icon": "commercial",
-            "fields": [
-                "address",
-                "building_area",
-                "opening_hours",
-                "internet_access",
-                "internet_access/fee",
-                "internet_access/ssid"
-            ],
-            "geometry": [
-                "point",
-                "area"
-            ],
-            "terms": [
-                "coworking",
-                "office"
-            ],
-            "tags": {
-                "amenity": "coworking_space"
-            },
-            "name": "Coworking Space"
         },
         "amenity/crematorium": {
             "icon": "cemetery",
@@ -1120,7 +1283,7 @@
             "name": "Dojo / Martial Arts Academy"
         },
         "amenity/drinking_water": {
-            "icon": "water",
+            "icon": "drinking-water",
             "geometry": [
                 "point"
             ],
@@ -1132,6 +1295,23 @@
                 "potable"
             ],
             "name": "Drinking Water"
+        },
+        "amenity/driving_school": {
+            "icon": "car",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "amenity": "driving_school"
+            },
+            "name": "Driving School"
         },
         "amenity/embassy": {
             "icon": "embassy",
@@ -1237,6 +1417,7 @@
             "name": "Food Court"
         },
         "amenity/fountain": {
+            "icon": "poi-fountain",
             "geometry": [
                 "point",
                 "area"
@@ -1320,11 +1501,9 @@
                 "clinic",
                 "doctor",
                 "emergency room",
-                "health service",
-                "hospice",
+                "health",
                 "infirmary",
                 "institution",
-                "nursing home",
                 "sanatorium",
                 "sanitarium",
                 "sick",
@@ -1337,6 +1516,7 @@
             "name": "Hospital Grounds"
         },
         "amenity/hunting_stand": {
+            "icon": "poi-binoculars",
             "geometry": [
                 "point",
                 "vertex",
@@ -1344,8 +1524,10 @@
             ],
             "terms": [
                 "game",
+                "gun",
                 "lookout",
-                "shoot",
+                "rifle",
+                "shoot*",
                 "wild",
                 "watch"
             ],
@@ -1381,6 +1563,7 @@
             "name": "Ice Cream Shop"
         },
         "amenity/internet_cafe": {
+            "icon": "poi-mast",
             "fields": [
                 "operator",
                 "address",
@@ -1453,6 +1636,7 @@
             "name": "Library"
         },
         "amenity/marketplace": {
+            "icon": "shop",
             "fields": [
                 "operator",
                 "address",
@@ -1511,7 +1695,7 @@
             "name": "Nightclub"
         },
         "amenity/parking_entrance": {
-            "icon": "entrance",
+            "icon": "entrance-alt1",
             "fields": [
                 "access_simple",
                 "ref"
@@ -1537,6 +1721,7 @@
             "tags": {
                 "amenity": "parking_space"
             },
+            "matchScore": 0.95,
             "name": "Parking Space"
         },
         "amenity/parking": {
@@ -1593,7 +1778,8 @@
                 "religion",
                 "denomination",
                 "address",
-                "building_area"
+                "building_area",
+                "service_times"
             ],
             "geometry": [
                 "point",
@@ -1630,11 +1816,12 @@
             "name": "Place of Worship"
         },
         "amenity/place_of_worship/buddhist": {
-            "icon": "place-of-worship",
+            "icon": "buddhism",
             "fields": [
                 "denomination",
                 "building_area",
-                "address"
+                "address",
+                "service_times"
             ],
             "geometry": [
                 "point",
@@ -1660,7 +1847,8 @@
             "fields": [
                 "denomination",
                 "building_area",
-                "address"
+                "address",
+                "service_times"
             ],
             "geometry": [
                 "point",
@@ -1700,7 +1888,8 @@
             "fields": [
                 "denomination",
                 "building_area",
-                "address"
+                "address",
+                "service_times"
             ],
             "geometry": [
                 "point",
@@ -1720,7 +1909,8 @@
             "fields": [
                 "denomination",
                 "building_area",
-                "address"
+                "address",
+                "service_times"
             ],
             "geometry": [
                 "point",
@@ -1971,7 +2161,7 @@
             "name": "Recycling Center"
         },
         "amenity/recycling": {
-            "icon": "waste-basket",
+            "icon": "recycling",
             "fields": [
                 "recycling_type",
                 "recycling_accepts",
@@ -2035,6 +2225,7 @@
             "name": "Restaurant"
         },
         "amenity/sanitary_dump_station": {
+            "icon": "poi-storage-tank",
             "fields": [
                 "operator",
                 "access_toilets",
@@ -2083,6 +2274,7 @@
             "name": "School Grounds"
         },
         "amenity/shelter": {
+            "icon": "shelter",
             "fields": [
                 "shelter_type",
                 "bin"
@@ -2103,13 +2295,15 @@
             "name": "Shelter"
         },
         "amenity/social_facility": {
+            "icon": "poi-social-facility",
             "fields": [
                 "operator",
                 "address",
                 "building_area",
+                "social_facility",
+                "social_facility_for",
                 "opening_hours",
-                "wheelchair",
-                "social_facility_for"
+                "wheelchair"
             ],
             "geometry": [
                 "point",
@@ -2122,12 +2316,14 @@
             "name": "Social Facility"
         },
         "amenity/social_facility/food_bank": {
+            "icon": "poi-social-facility",
             "fields": [
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours",
-                "social_facility_for"
+                "social_facility",
+                "social_facility_for",
+                "opening_hours"
             ],
             "geometry": [
                 "point",
@@ -2141,13 +2337,15 @@
             "name": "Food Bank"
         },
         "amenity/social_facility/group_home": {
+            "icon": "wheelchair",
             "fields": [
                 "operator",
                 "address",
                 "building_area",
+                "social_facility",
+                "social_facility_for",
                 "opening_hours",
-                "wheelchair",
-                "social_facility_for"
+                "wheelchair"
             ],
             "geometry": [
                 "point",
@@ -2166,13 +2364,15 @@
             "name": "Elderly Group Home"
         },
         "amenity/social_facility/homeless_shelter": {
+            "icon": "poi-social-facility",
             "fields": [
                 "operator",
                 "address",
                 "building_area",
+                "social_facility",
+                "social_facility_for",
                 "opening_hours",
                 "wheelchair",
-                "social_facility_for",
                 "internet_access",
                 "internet_access/fee",
                 "internet_access/ssid"
@@ -2193,8 +2393,37 @@
             },
             "name": "Homeless Shelter"
         },
+        "amenity/social_facility/nursing_home": {
+            "icon": "wheelchair",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "social_facility",
+                "social_facility_for",
+                "opening_hours",
+                "wheelchair"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "elderly",
+                "living",
+                "nursing",
+                "old",
+                "senior"
+            ],
+            "tags": {
+                "amenity": "social_facility",
+                "social_facility": "nursing_home",
+                "social_facility:for": "senior"
+            },
+            "name": "Nursing Home"
+        },
         "amenity/studio": {
-            "icon": "music",
+            "icon": "karaoke",
             "fields": [
                 "studio",
                 "address",
@@ -2270,7 +2499,7 @@
             "name": "Theater"
         },
         "amenity/toilets": {
-            "icon": "toilets",
+            "icon": "toilet",
             "fields": [
                 "toilets/disposal",
                 "operator",
@@ -2346,6 +2575,7 @@
             "name": "University Grounds"
         },
         "amenity/vending_machine/cigarettes": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2364,6 +2594,7 @@
             "name": "Cigarette Vending Machine"
         },
         "amenity/vending_machine/condoms": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2382,6 +2613,7 @@
             "name": "Condom Vending Machine"
         },
         "amenity/vending_machine/drinks": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2404,6 +2636,7 @@
             "name": "Drink Vending Machine"
         },
         "amenity/vending_machine/excrement_bags": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "fee",
@@ -2427,6 +2660,7 @@
             "name": "Excrement Bag Vending Machine"
         },
         "amenity/vending_machine/news_papers": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "fee",
@@ -2446,6 +2680,7 @@
             "name": "Newspaper Vending Machine"
         },
         "amenity/vending_machine/parcel_pickup_dropoff": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2466,6 +2701,7 @@
             "name": "Parcel Pickup/Dropoff Vending Machine"
         },
         "amenity/vending_machine/parking_tickets": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2482,9 +2718,11 @@
                 "amenity": "vending_machine",
                 "vending": "parking_tickets"
             },
+            "matchScore": 0.94,
             "name": "Parking Ticket Vending Machine"
         },
         "amenity/vending_machine/public_transport_tickets": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2508,6 +2746,7 @@
             "name": "Transit Ticket Vending Machine"
         },
         "amenity/vending_machine/sweets": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "operator",
                 "payment_multi",
@@ -2531,6 +2770,7 @@
             "name": "Snack Vending Machine"
         },
         "amenity/vending_machine/vending_machine": {
+            "icon": "poi-vending-machine",
             "fields": [
                 "vending",
                 "operator",
@@ -2547,7 +2787,7 @@
             "name": "Vending Machine"
         },
         "amenity/veterinary": {
-            "icon": "dog-park",
+            "icon": "veterinary",
             "fields": [
                 "operator",
                 "address",
@@ -2637,7 +2877,7 @@
             "name": "Waste Transfer Station"
         },
         "amenity/water_point": {
-            "icon": "water",
+            "icon": "drinking-water",
             "geometry": [
                 "area",
                 "vertex",
@@ -2647,6 +2887,18 @@
                 "amenity": "water_point"
             },
             "name": "RV Drinking Water"
+        },
+        "amenity/watering_place": {
+            "icon": "drinking-water",
+            "geometry": [
+                "area",
+                "vertex",
+                "point"
+            ],
+            "tags": {
+                "amenity": "watering_place"
+            },
+            "name": "Animal Watering Place"
         },
         "area": {
             "name": "Area",
@@ -2684,10 +2936,11 @@
             "fields": [
                 "barrier"
             ],
-            "name": "Barrier"
+            "name": "Barrier",
+            "matchScore": 0.4
         },
         "barrier/entrance": {
-            "icon": "entrance",
+            "icon": "entrance-alt1",
             "geometry": [
                 "vertex"
             ],
@@ -2726,8 +2979,23 @@
             },
             "name": "Bollard"
         },
+        "barrier/border_control": {
+            "icon": "roadblock",
+            "fields": [
+                "access",
+                "building_area"
+            ],
+            "geometry": [
+                "vertex",
+                "area"
+            ],
+            "tags": {
+                "barrier": "border_control"
+            },
+            "name": "Border Control"
+        },
         "barrier/cattle_grid": {
-            "icon": "prison",
+            "icon": "barrier",
             "geometry": [
                 "vertex"
             ],
@@ -2737,7 +3005,7 @@
             "name": "Cattle Grid"
         },
         "barrier/city_wall": {
-            "icon": "prison",
+            "icon": "barrier",
             "fields": [
                 "height"
             ],
@@ -2772,10 +3040,11 @@
             "tags": {
                 "barrier": "ditch"
             },
-            "name": "Trench"
+            "name": "Trench",
+            "matchScore": 0.25
         },
         "barrier/fence": {
-            "icon": "prison",
+            "icon": "fence",
             "fields": [
                 "fence_type",
                 "height"
@@ -2786,10 +3055,11 @@
             "tags": {
                 "barrier": "fence"
             },
-            "name": "Fence"
+            "name": "Fence",
+            "matchScore": 0.25
         },
         "barrier/gate": {
-            "icon": "prison",
+            "icon": "barrier",
             "fields": [
                 "access"
             ],
@@ -2814,10 +3084,11 @@
             "tags": {
                 "barrier": "hedge"
             },
-            "name": "Hedge"
+            "name": "Hedge",
+            "matchScore": 0.25
         },
         "barrier/kissing_gate": {
-            "icon": "prison",
+            "icon": "barrier",
             "fields": [
                 "access"
             ],
@@ -2870,10 +3141,12 @@
         "barrier/toll_booth": {
             "icon": "roadblock",
             "fields": [
-                "access"
+                "access",
+                "building_area"
             ],
             "geometry": [
-                "vertex"
+                "vertex",
+                "area"
             ],
             "tags": {
                 "barrier": "toll_booth"
@@ -2881,7 +3154,7 @@
             "name": "Toll Booth"
         },
         "barrier/wall": {
-            "icon": "prison",
+            "icon": "barrier",
             "fields": [
                 "wall",
                 "height"
@@ -2893,7 +3166,8 @@
             "tags": {
                 "barrier": "wall"
             },
-            "name": "Wall"
+            "name": "Wall",
+            "matchScore": 0.25
         },
         "boundary/administrative": {
             "name": "Administrative Boundary",
@@ -2908,7 +3182,7 @@
             ]
         },
         "building": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "building",
                 "levels",
@@ -2921,7 +3195,7 @@
             "tags": {
                 "building": "*"
             },
-            "matchScore": 0.4,
+            "matchScore": 0.6,
             "terms": [],
             "name": "Building"
         },
@@ -2941,7 +3215,7 @@
             "searchable": false
         },
         "building/entrance": {
-            "icon": "entrance",
+            "icon": "entrance-alt1",
             "geometry": [
                 "vertex"
             ],
@@ -2970,7 +3244,7 @@
             "searchable": false
         },
         "building/apartments": {
-            "icon": "commercial",
+            "icon": "building",
             "fields": [
                 "address",
                 "levels"
@@ -2985,7 +3259,7 @@
             "name": "Apartments"
         },
         "building/barn": {
-            "icon": "building",
+            "icon": "farm",
             "fields": [
                 "address",
                 "levels"
@@ -3000,7 +3274,7 @@
             "name": "Barn"
         },
         "building/cabin": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3109,7 +3383,7 @@
             "name": "Building Under Construction"
         },
         "building/detached": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3175,7 +3449,7 @@
             "name": "Garages"
         },
         "building/greenhouse": {
-            "icon": "building",
+            "icon": "garden-center",
             "fields": [
                 "address",
                 "levels"
@@ -3221,7 +3495,7 @@
             "name": "Hotel Building"
         },
         "building/house": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3252,7 +3526,7 @@
             "name": "Hut"
         },
         "building/industrial": {
-            "icon": "industrial",
+            "icon": "industry",
             "fields": [
                 "address",
                 "levels"
@@ -3302,7 +3576,7 @@
             "name": "Public Building"
         },
         "building/residential": {
-            "icon": "building",
+            "icon": "residential-community",
             "fields": [
                 "address",
                 "levels"
@@ -3317,7 +3591,7 @@
             "name": "Residential Building"
         },
         "building/retail": {
-            "icon": "building",
+            "icon": "commercial",
             "fields": [
                 "address",
                 "levels",
@@ -3333,7 +3607,7 @@
             "name": "Retail Building"
         },
         "building/roof": {
-            "icon": "building",
+            "icon": "shelter",
             "fields": [
                 "address"
             ],
@@ -3368,7 +3642,7 @@
             "name": "School Building"
         },
         "building/semidetached_house": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3392,7 +3666,7 @@
             "name": "Semi-Detached House"
         },
         "building/shed": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3407,7 +3681,7 @@
             "name": "Shed"
         },
         "building/stable": {
-            "icon": "building",
+            "icon": "horse-riding",
             "fields": [
                 "address",
                 "levels"
@@ -3422,7 +3696,7 @@
             "name": "Stable"
         },
         "building/static_caravan": {
-            "icon": "building",
+            "icon": "home",
             "fields": [
                 "address",
                 "levels"
@@ -3510,8 +3784,29 @@
             },
             "name": "Camp Pitch"
         },
+        "club": {
+            "icon": "heart",
+            "fields": [
+                "club",
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "club": "*"
+            },
+            "terms": [
+                "social"
+            ],
+            "name": "Club"
+        },
         "craft": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "craft",
                 "operator",
@@ -3640,7 +3935,7 @@
             "name": "Beekeeper"
         },
         "craft/blacksmith": {
-            "icon": "farm",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3657,7 +3952,7 @@
             "name": "Blacksmith"
         },
         "craft/boatbuilder": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3715,7 +4010,7 @@
             "name": "Brewery"
         },
         "craft/carpenter": {
-            "icon": "logging",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3735,7 +4030,7 @@
             "name": "Carpenter"
         },
         "craft/carpet_layer": {
-            "icon": "square",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3752,7 +4047,7 @@
             "name": "Carpet Layer"
         },
         "craft/caterer": {
-            "icon": "bakery",
+            "icon": "restaurant",
             "fields": [
                 "cuisine",
                 "operator",
@@ -3770,6 +4065,7 @@
             "name": "Caterer"
         },
         "craft/clockmaker": {
+            "icon": "poi-clock",
             "fields": [
                 "operator",
                 "address",
@@ -3827,7 +4123,7 @@
             "name": "Dressmaker"
         },
         "craft/electrician": {
-            "icon": "marker-stroked",
+            "icon": "poi-power",
             "fields": [
                 "operator",
                 "address",
@@ -3908,7 +4204,7 @@
             "name": "Handicraft"
         },
         "craft/hvac": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3930,7 +4226,7 @@
             "name": "HVAC"
         },
         "craft/insulator": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3964,7 +4260,7 @@
             "name": "Key Cutter"
         },
         "craft/metal_construction": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -3998,7 +4294,7 @@
             "name": "Painter"
         },
         "craft/photographer": {
-            "icon": "camera",
+            "icon": "attraction",
             "fields": [
                 "operator",
                 "address",
@@ -4015,7 +4311,7 @@
             "name": "Photographer"
         },
         "craft/photographic_laboratory": {
-            "icon": "camera",
+            "icon": "attraction",
             "fields": [
                 "operator",
                 "address",
@@ -4035,7 +4331,7 @@
             "name": "Photographic Laboratory"
         },
         "craft/plasterer": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4052,7 +4348,7 @@
             "name": "Plasterer"
         },
         "craft/plumber": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4092,7 +4388,7 @@
             "name": "Pottery"
         },
         "craft/rigger": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4109,7 +4405,7 @@
             "name": "Rigger"
         },
         "craft/roofer": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4126,7 +4422,7 @@
             "name": "Roofer"
         },
         "craft/saddler": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4143,7 +4439,7 @@
             "name": "Saddler"
         },
         "craft/sailmaker": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4160,7 +4456,7 @@
             "name": "Sailmaker"
         },
         "craft/sawmill": {
-            "icon": "park",
+            "icon": "logging",
             "fields": [
                 "operator",
                 "address",
@@ -4180,7 +4476,7 @@
             "name": "Sawmill"
         },
         "craft/scaffolder": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4214,7 +4510,7 @@
             "name": "Sculpter"
         },
         "craft/shoemaker": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4234,7 +4530,7 @@
             "name": "Shoemaker"
         },
         "craft/stonemason": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4254,7 +4550,7 @@
             "name": "Stonemason"
         },
         "craft/sweep": {
-            "icon": "marker-stroked",
+            "icon": "poi-chimney",
             "fields": [
                 "operator",
                 "address",
@@ -4271,7 +4567,7 @@
             "name": "Chimney Sweep"
         },
         "craft/tiler": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4288,7 +4584,7 @@
             "name": "Tiler"
         },
         "craft/tinsmith": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4305,7 +4601,7 @@
             "name": "Tinsmith"
         },
         "craft/upholsterer": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4322,6 +4618,7 @@
             "name": "Upholsterer"
         },
         "craft/watchmaker": {
+            "icon": "poi-clock",
             "fields": [
                 "operator",
                 "address",
@@ -4338,7 +4635,7 @@
             "name": "Watchmaker"
         },
         "craft/window_construction": {
-            "icon": "marker-stroked",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -4484,6 +4781,7 @@
             "name": "Ambulance Station"
         },
         "emergency/defibrillator": {
+            "icon": "defibrillator",
             "fields": [
                 "access",
                 "opening_hours",
@@ -4502,13 +4800,19 @@
             "name": "Defibrillator"
         },
         "emergency/fire_hydrant": {
-            "icon": "fire-station",
+            "icon": "poi-fire-hydrant",
             "fields": [
-                "fire_hydrant/type"
+                "fire_hydrant/type",
+                "fire_hydrant/position",
+                "ref",
+                "operator"
             ],
             "geometry": [
                 "point",
                 "vertex"
+            ],
+            "terms": [
+                "fire plug"
             ],
             "tags": {
                 "emergency": "fire_hydrant"
@@ -4516,7 +4820,7 @@
             "name": "Fire Hydrant"
         },
         "emergency/phone": {
-            "icon": "emergency-telephone",
+            "icon": "emergency-phone",
             "fields": [
                 "operator"
             ],
@@ -4530,7 +4834,7 @@
             "name": "Emergency Phone"
         },
         "entrance": {
-            "icon": "entrance",
+            "icon": "entrance-alt1",
             "geometry": [
                 "vertex"
             ],
@@ -4734,7 +5038,7 @@
             "name": "Water Hazard"
         },
         "healthcare/blood_donation": {
-            "icon": "hospital",
+            "icon": "blood-bank",
             "fields": [
                 "operator",
                 "address",
@@ -4838,6 +5142,7 @@
             "name": "Street Crossing"
         },
         "highway/crosswalk": {
+            "icon": "poi-foot",
             "fields": [
                 "crossing",
                 "kerb",
@@ -4902,6 +5207,7 @@
             "name": "Foot Path"
         },
         "highway/give_way": {
+            "icon": "poi-yield",
             "fields": [
                 "parallel_direction"
             ],
@@ -4952,6 +5258,7 @@
             "name": "Mini-Roundabout"
         },
         "highway/motorway_junction": {
+            "icon": "poi-junction",
             "geometry": [
                 "vertex"
             ],
@@ -5006,6 +5313,7 @@
                 "lanes",
                 "surface",
                 "maxheight",
+                "toll",
                 "ref"
             ],
             "geometry": [
@@ -5014,7 +5322,16 @@
             "tags": {
                 "highway": "motorway"
             },
-            "terms": [],
+            "terms": [
+                "autobahn",
+                "expressway",
+                "freeway",
+                "highway",
+                "interstate",
+                "parkway",
+                "thruway",
+                "turnpike"
+            ],
             "name": "Motorway"
         },
         "highway/path": {
@@ -5120,11 +5437,16 @@
             "fields": [
                 "oneway",
                 "surface",
-                "sport_racing",
-                "structure"
+                "sport_racing_motor",
+                "structure",
+                "lit",
+                "width",
+                "lanes"
             ],
             "geometry": [
-                "line"
+                "point",
+                "line",
+                "area"
             ],
             "tags": {
                 "highway": "raceway"
@@ -5135,10 +5457,14 @@
             },
             "terms": [
                 "auto*",
+                "formula one",
+                "kart",
+                "motocross",
+                "nascar",
                 "race*",
-                "nascar"
+                "track"
             ],
-            "name": "Motor Raceway"
+            "name": "Racetrack (Motorsport)"
         },
         "highway/residential": {
             "icon": "highway-residential",
@@ -5162,6 +5488,7 @@
             "name": "Residential Road"
         },
         "highway/rest_area": {
+            "icon": "car",
             "geometry": [
                 "point",
                 "vertex",
@@ -5286,11 +5613,12 @@
             "icon": "highway-service",
             "fields": [
                 "oneway",
+                "covered",
+                "maxheight",
                 "maxspeed",
                 "structure",
                 "access",
-                "surface",
-                "maxheight"
+                "surface"
             ],
             "geometry": [
                 "line"
@@ -5359,6 +5687,7 @@
             "name": "Parking Aisle"
         },
         "highway/services": {
+            "icon": "car",
             "geometry": [
                 "point",
                 "vertex",
@@ -5374,15 +5703,30 @@
             ],
             "name": "Service Area"
         },
+        "highway/speed_camera": {
+            "icon": "attraction",
+            "geometry": [
+                "point"
+            ],
+            "fields": [
+                "ref"
+            ],
+            "tags": {
+                "highway": "speed_camera"
+            },
+            "terms": [],
+            "name": "Speed Camera"
+        },
         "highway/steps": {
+            "icon": "highway-steps",
             "fields": [
                 "surface",
                 "lit",
                 "width",
                 "incline_steps",
-                "handrail"
+                "handrail",
+                "step_count"
             ],
-            "icon": "highway-steps",
             "geometry": [
                 "line"
             ],
@@ -5396,6 +5740,7 @@
             "name": "Steps"
         },
         "highway/stop": {
+            "icon": "poi-stop",
             "fields": [
                 "stop",
                 "parallel_direction"
@@ -5414,6 +5759,7 @@
             "name": "Stop Sign"
         },
         "highway/street_lamp": {
+            "icon": "poi-street-lamp",
             "geometry": [
                 "point",
                 "vertex"
@@ -5485,12 +5831,12 @@
         "highway/track": {
             "icon": "highway-track",
             "fields": [
+                "tracktype",
                 "surface",
                 "width",
                 "structure",
                 "access",
                 "incline",
-                "tracktype",
                 "smoothness",
                 "mtb/scale",
                 "mtb/scale/uphill",
@@ -5547,6 +5893,7 @@
             "name": "Traffic Mirror"
         },
         "highway/traffic_signals": {
+            "icon": "poi-traffic-signals",
             "geometry": [
                 "vertex"
             ],
@@ -5598,6 +5945,7 @@
                 "lanes",
                 "surface",
                 "maxheight",
+                "toll",
                 "ref"
             ],
             "geometry": [
@@ -5657,6 +6005,7 @@
             "name": "Minor/Unclassified Road"
         },
         "historic": {
+            "icon": "poi-ruins",
             "fields": [
                 "historic"
             ],
@@ -5671,6 +6020,10 @@
             "name": "Historic Site"
         },
         "historic/archaeological_site": {
+            "icon": "poi-ruins",
+            "fields": [
+                "historic/civilization"
+            ],
             "geometry": [
                 "point",
                 "vertex",
@@ -5682,6 +6035,7 @@
             "name": "Archaeological Site"
         },
         "historic/boundary_stone": {
+            "icon": "poi-monument",
             "geometry": [
                 "point",
                 "vertex"
@@ -5692,6 +6046,12 @@
             "name": "Boundary Stone"
         },
         "historic/castle": {
+            "icon": "castle",
+            "fields": [
+                "castle_type",
+                "building_area",
+                "historic/civilization"
+            ],
             "geometry": [
                 "point",
                 "area"
@@ -5726,6 +6086,10 @@
             "name": "Monument"
         },
         "historic/ruins": {
+            "icon": "poi-ruins",
+            "fields": [
+                "historic/civilization"
+            ],
             "geometry": [
                 "point",
                 "vertex",
@@ -5735,6 +6099,21 @@
                 "historic": "ruins"
             },
             "name": "Ruins"
+        },
+        "historic/tomb": {
+            "icon": "cemetery",
+            "fields": [
+                "tomb",
+                "building_area"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "historic": "tomb"
+            },
+            "name": "Tomb"
         },
         "historic/wayside_cross": {
             "icon": "religious-christian",
@@ -5749,6 +6128,7 @@
             "name": "Wayside Cross"
         },
         "historic/wayside_shrine": {
+            "icon": "landmark",
             "geometry": [
                 "point",
                 "vertex",
@@ -5760,6 +6140,7 @@
             "name": "Wayside Shrine"
         },
         "junction": {
+            "icon": "poi-junction",
             "geometry": [
                 "vertex",
                 "area"
@@ -5779,11 +6160,13 @@
             "tags": {
                 "landuse": "*"
             },
+            "matchScore": 0.9,
             "name": "Land Use"
         },
         "landuse/farm": {
             "icon": "farm",
             "fields": [
+                "operator",
                 "crop"
             ],
             "geometry": [
@@ -5810,7 +6193,32 @@
             ],
             "name": "Community Garden"
         },
+        "landuse/aquaculture": {
+            "icon": "aquarium",
+            "fields": [
+                "operator",
+                "produce"
+            ],
+            "geometry": [
+                "area"
+            ],
+            "tags": {
+                "landuse": "aquaculture"
+            },
+            "terms": [
+                "fish farm",
+                "crustacean",
+                "algae",
+                "aquafarming",
+                "shrimp farm",
+                "oyster farm",
+                "mariculture",
+                "algaculture"
+            ],
+            "name": "Aquaculture"
+        },
         "landuse/basin": {
+            "icon": "water",
             "geometry": [
                 "area"
             ],
@@ -5877,7 +6285,9 @@
         "landuse/farmland": {
             "icon": "farm",
             "fields": [
-                "crop"
+                "operator",
+                "crop",
+                "produce"
             ],
             "geometry": [
                 "area"
@@ -5885,12 +6295,17 @@
             "tags": {
                 "landuse": "farmland"
             },
-            "terms": [],
+            "terms": [
+                "crop",
+                "grow",
+                "plant"
+            ],
             "name": "Farmland"
         },
         "landuse/farmyard": {
             "icon": "farm",
             "fields": [
+                "operator",
                 "crop"
             ],
             "geometry": [
@@ -5899,14 +6314,19 @@
             "tags": {
                 "landuse": "farmyard"
             },
-            "terms": [],
+            "terms": [
+                "crop",
+                "grow",
+                "plant"
+            ],
             "name": "Farmyard"
         },
         "landuse/forest": {
-            "icon": "park2",
+            "icon": "park-alt1",
             "fields": [
                 "leaf_type",
-                "leaf_cycle"
+                "leaf_cycle",
+                "produce"
             ],
             "geometry": [
                 "area"
@@ -5939,8 +6359,24 @@
             "terms": [],
             "name": "Grass"
         },
+        "landuse/harbour": {
+            "icon": "harbor",
+            "fields": [
+                "operator"
+            ],
+            "geometry": [
+                "area"
+            ],
+            "terms": [
+                "boat"
+            ],
+            "tags": {
+                "landuse": "harbour"
+            },
+            "name": "Harbor"
+        },
         "landuse/industrial": {
-            "icon": "industrial",
+            "icon": "industry",
             "geometry": [
                 "area"
             ],
@@ -5948,6 +6384,7 @@
                 "landuse": "industrial"
             },
             "terms": [],
+            "matchScore": 0.9,
             "name": "Industrial Area"
         },
         "landuse/landfill": {
@@ -5973,6 +6410,7 @@
             "name": "Meadow"
         },
         "landuse/military": {
+            "icon": "poi-military",
             "geometry": [
                 "area"
             ],
@@ -5980,11 +6418,389 @@
                 "landuse": "military"
             },
             "terms": [],
+            "matchScore": 0.9,
             "name": "Military Area"
         },
-        "landuse/orchard": {
-            "icon": "park2",
+        "landuse/military/airfield": {
+            "icon": "airfield",
             "fields": [
+                "ref",
+                "iata",
+                "icao"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "airfield"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "airfield"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "airfield"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "bomb",
+                "fight",
+                "force",
+                "guard",
+                "heli*",
+                "jet",
+                "marine",
+                "navy",
+                "plane",
+                "troop",
+                "war"
+            ],
+            "name": "Military Airfield"
+        },
+        "landuse/military/barracks": {
+            "icon": "poi-military",
+            "fields": [
+                "building_area"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "barracks"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "barracks"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "barracks"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "fight",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "troop",
+                "war"
+            ],
+            "name": "Barracks"
+        },
+        "landuse/military/bunker": {
+            "icon": "poi-military",
+            "fields": [
+                "bunker_type",
+                "building_area"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "bunker"
+            },
+            "addTags": {
+                "building": "bunker",
+                "landuse": "military",
+                "military": "bunker"
+            },
+            "removeTags": {
+                "building": "bunker",
+                "landuse": "military",
+                "military": "bunker"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "fight",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "troop",
+                "war"
+            ],
+            "name": "Military Bunker"
+        },
+        "landuse/military/checkpoint": {
+            "icon": "barrier",
+            "geometry": [
+                "point",
+                "vertex",
+                "area"
+            ],
+            "tags": {
+                "military": "checkpoint"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "checkpoint"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "checkpoint"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "troop",
+                "war"
+            ],
+            "name": "Checkpoint"
+        },
+        "landuse/military/danger_area": {
+            "icon": "danger",
+            "geometry": [
+                "point",
+                "vertex",
+                "area"
+            ],
+            "tags": {
+                "military": "danger_area"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "danger_area"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "danger_area"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "blast",
+                "bomb",
+                "explo*",
+                "force",
+                "guard",
+                "mine",
+                "marine",
+                "navy",
+                "troop",
+                "war"
+            ],
+            "name": "Danger Area"
+        },
+        "landuse/military/naval_base": {
+            "icon": "poi-military",
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "naval_base"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "naval_base"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "naval_base"
+            },
+            "terms": [
+                "base",
+                "fight",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "ship",
+                "sub",
+                "troop",
+                "war"
+            ],
+            "name": "Naval Base"
+        },
+        "landuse/military/nuclear_explosion_site": {
+            "icon": "danger",
+            "geometry": [
+                "point",
+                "vertex",
+                "area"
+            ],
+            "tags": {
+                "military": "nuclear_explosion_site"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "nuclear_explosion_site"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "nuclear_explosion_site"
+            },
+            "terms": [
+                "atom",
+                "blast",
+                "bomb",
+                "detonat*",
+                "nuke",
+                "site",
+                "test"
+            ],
+            "name": "Nuclear Explosion Site"
+        },
+        "landuse/military/obstacle_course": {
+            "icon": "poi-military",
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "obstacle_course"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "obstacle_course"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "obstacle_course"
+            },
+            "terms": [
+                "army",
+                "base",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "troop",
+                "war"
+            ],
+            "name": "Obstacle Course"
+        },
+        "landuse/military/office": {
+            "icon": "poi-military",
+            "fields": [
+                "building_area"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "office"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "office"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "office"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "enlist",
+                "fight",
+                "force",
+                "guard",
+                "marine",
+                "navy",
+                "recruit",
+                "troop",
+                "war"
+            ],
+            "name": "Military Office"
+        },
+        "landuse/military/range": {
+            "icon": "poi-military",
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "range"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "range"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "range"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "fight",
+                "fire",
+                "force",
+                "guard",
+                "gun",
+                "marine",
+                "navy",
+                "rifle",
+                "shoot*",
+                "snip*",
+                "train",
+                "troop",
+                "war"
+            ],
+            "name": "Military Range"
+        },
+        "landuse/military/training_area": {
+            "icon": "poi-military",
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "military": "training_area"
+            },
+            "addTags": {
+                "landuse": "military",
+                "military": "training_area"
+            },
+            "removeTags": {
+                "landuse": "military",
+                "military": "training_area"
+            },
+            "terms": [
+                "air force",
+                "army",
+                "base",
+                "fight",
+                "fire",
+                "force",
+                "guard",
+                "gun",
+                "marine",
+                "navy",
+                "rifle",
+                "shoot*",
+                "snip*",
+                "train",
+                "troop",
+                "war"
+            ],
+            "name": "Training Area"
+        },
+        "landuse/orchard": {
+            "icon": "park-alt1",
+            "fields": [
+                "operator",
                 "trees"
             ],
             "geometry": [
@@ -5993,22 +6809,27 @@
             "tags": {
                 "landuse": "orchard"
             },
-            "terms": [],
+            "terms": [
+                "fruit"
+            ],
             "name": "Orchard"
         },
         "landuse/plant_nursery": {
             "icon": "garden",
             "fields": [
-                "name"
+                "operator",
+                "plant"
             ],
             "geometry": [
-                "point",
                 "area"
             ],
             "tags": {
                 "landuse": "plant_nursery"
             },
             "terms": [
+                "flower",
+                "garden",
+                "grow",
                 "vivero"
             ],
             "name": "Plant Nursery"
@@ -6023,7 +6844,26 @@
             "terms": [],
             "name": "Quarry"
         },
+        "landuse/railway": {
+            "icon": "rail",
+            "fields": [
+                "operator"
+            ],
+            "geometry": [
+                "area"
+            ],
+            "tags": {
+                "landuse": "railway"
+            },
+            "terms": [
+                "rail",
+                "train",
+                "track"
+            ],
+            "name": "Railway Corridor"
+        },
         "landuse/recreation_ground": {
+            "icon": "pitch",
             "geometry": [
                 "area"
             ],
@@ -6057,16 +6897,33 @@
             "name": "Retail Area"
         },
         "landuse/vineyard": {
+            "fields": [
+                "operator",
+                "grape_variety"
+            ],
             "geometry": [
                 "area"
             ],
             "tags": {
                 "landuse": "vineyard"
             },
-            "terms": [],
+            "addTags": {
+                "landuse": "vineyard",
+                "crop": "grape"
+            },
+            "removeTags": {
+                "landuse": "vineyard",
+                "crop": "grape",
+                "grape_variety": "*"
+            },
+            "terms": [
+                "grape",
+                "wine"
+            ],
             "name": "Vineyard"
         },
         "leisure": {
+            "icon": "pitch",
             "fields": [
                 "leisure"
             ],
@@ -6081,6 +6938,7 @@
             "name": "Leisure"
         },
         "leisure/adult_gaming_centre": {
+            "icon": "poi-dice",
             "fields": [
                 "operator",
                 "address",
@@ -6102,6 +6960,7 @@
             "name": "Adult Gaming Center"
         },
         "leisure/bird_hide": {
+            "icon": "poi-binoculars",
             "fields": [
                 "building_area"
             ],
@@ -6119,6 +6978,7 @@
             "name": "Bird Hide"
         },
         "leisure/bowling_alley": {
+            "icon": "poi-bowling",
             "fields": [
                 "operator",
                 "address",
@@ -6137,6 +6997,7 @@
             "name": "Bowling Alley"
         },
         "leisure/common": {
+            "icon": "poi-foot",
             "geometry": [
                 "point",
                 "area"
@@ -6150,6 +7011,7 @@
             "name": "Common"
         },
         "leisure/dance": {
+            "icon": "music",
             "fields": [
                 "operator",
                 "address",
@@ -6185,6 +7047,7 @@
             "name": "Dog Park"
         },
         "leisure/firepit": {
+            "icon": "fire-station",
             "geometry": [
                 "point",
                 "area"
@@ -6295,6 +7158,27 @@
                 "leisure": "golf_course"
             },
             "name": "Golf Course"
+        },
+        "leisure/horse_riding": {
+            "icon": "horse-riding",
+            "fields": [
+                "access_simple",
+                "operator",
+                "address",
+                "building"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "equestrian",
+                "stable"
+            ],
+            "tags": {
+                "leisure": "horse_riding"
+            },
+            "name": "Horseback Riding Facility"
         },
         "leisure/ice_rink": {
             "icon": "pitch",
@@ -6416,6 +7300,7 @@
             "name": "Park"
         },
         "leisure/picnic_table": {
+            "icon": "picnic-site",
             "geometry": [
                 "point"
             ],
@@ -6515,6 +7400,47 @@
             "terms": [],
             "name": "Bowling Green"
         },
+        "leisure/pitch/cricket": {
+            "icon": "cricket",
+            "fields": [
+                "surface",
+                "lit"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "leisure": "pitch",
+                "sport": "cricket"
+            },
+            "terms": [],
+            "name": "Cricket Field"
+        },
+        "leisure/pitch/equestrian": {
+            "icon": "horse-riding",
+            "fields": [
+                "surface",
+                "lit",
+                "building"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "leisure": "pitch",
+                "sport": "equestrian"
+            },
+            "terms": [
+                "dressage",
+                "equestrian",
+                "horse",
+                "horseback",
+                "riding"
+            ],
+            "name": "Riding Arena"
+        },
         "leisure/pitch/rugby_league": {
             "icon": "america-football",
             "fields": [
@@ -6583,6 +7509,26 @@
             "terms": [],
             "name": "Soccer Field"
         },
+        "leisure/pitch/table_tennis": {
+            "icon": "tennis",
+            "fields": [
+                "lit",
+                "access_simple"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "leisure": "pitch",
+                "sport": "table_tennis"
+            },
+            "terms": [
+                "table tennis",
+                "ping pong"
+            ],
+            "name": "Ping Pong Table"
+        },
         "leisure/pitch/tennis": {
             "icon": "tennis",
             "fields": [
@@ -6634,6 +7580,7 @@
             "name": "Playground"
         },
         "leisure/resort": {
+            "icon": "lodging",
             "fields": [
                 "operator",
                 "address",
@@ -6652,22 +7599,30 @@
             "icon": "pitch",
             "fields": [
                 "surface",
-                "sport_racing",
+                "sport_racing_nonmotor",
                 "lit",
                 "width",
                 "lanes"
             ],
             "geometry": [
                 "point",
-                "line"
+                "line",
+                "area"
             ],
             "tags": {
                 "leisure": "track",
                 "sport": "running"
             },
-            "name": "Running Track"
+            "terms": [
+                "race*",
+                "running",
+                "sprint",
+                "track"
+            ],
+            "name": "Racetrack (Running)"
         },
         "leisure/slipway": {
+            "icon": "poi-beach",
             "geometry": [
                 "point",
                 "line"
@@ -6760,19 +7715,28 @@
             "icon": "highway-road",
             "fields": [
                 "surface",
-                "sport_racing",
+                "sport_racing_nonmotor",
                 "lit",
                 "width",
                 "lanes"
             ],
             "geometry": [
                 "point",
-                "line"
+                "line",
+                "area"
             ],
             "tags": {
                 "leisure": "track"
             },
-            "name": "Racetrack (non-Motorsport)"
+            "terms": [
+                "cycle",
+                "dog",
+                "greyhound",
+                "horse",
+                "race*",
+                "track"
+            ],
+            "name": "Racetrack (Non-Motorsport)"
         },
         "leisure/water_park": {
             "icon": "swimming",
@@ -6803,6 +7767,7 @@
             "matchScore": 0.1
         },
         "man_made": {
+            "icon": "poi-storage-tank",
             "fields": [
                 "man_made"
             ],
@@ -6828,6 +7793,7 @@
             "searchable": false
         },
         "man_made/adit": {
+            "icon": "triangle",
             "geometry": [
                 "point",
                 "area"
@@ -6866,6 +7832,7 @@
             "name": "Bridge"
         },
         "man_made/chimney": {
+            "icon": "poi-chimney",
             "geometry": [
                 "point",
                 "area"
@@ -6885,16 +7852,17 @@
             "name": "Cut line"
         },
         "man_made/flagpole": {
+            "icon": "embassy",
             "geometry": [
                 "point"
             ],
             "tags": {
                 "man_made": "flagpole"
             },
-            "name": "Flagpole",
-            "icon": "embassy"
+            "name": "Flagpole"
         },
         "man_made/gasometer": {
+            "icon": "poi-storage-tank",
             "geometry": [
                 "point",
                 "area"
@@ -6932,20 +7900,26 @@
             "name": "Lighthouse"
         },
         "man_made/mast": {
+            "icon": "poi-mast",
             "fields": [
                 "tower/type",
                 "tower/construction",
-                "height"
+                "height",
+                "communication_multi"
             ],
             "geometry": [
                 "point"
             ],
             "terms": [
+                "antenna",
                 "broadcast tower",
                 "cell phone tower",
                 "cell tower",
+                "communication mast",
+                "communication tower",
                 "guyed tower",
                 "mobile phone tower",
+                "radio mast",
                 "radio tower",
                 "television tower",
                 "transmission mast",
@@ -6955,9 +7929,10 @@
             "tags": {
                 "man_made": "mast"
             },
-            "name": "Radio Mast"
+            "name": "Mast"
         },
         "man_made/observation": {
+            "icon": "poi-tower",
             "geometry": [
                 "point",
                 "area"
@@ -6973,6 +7948,7 @@
             "name": "Observation Tower"
         },
         "man_made/petroleum_well": {
+            "icon": "poi-storage-tank",
             "geometry": [
                 "point"
             ],
@@ -7019,6 +7995,7 @@
             "name": "Pipeline"
         },
         "man_made/pumping_station": {
+            "icon": "water",
             "geometry": [
                 "point",
                 "area"
@@ -7029,6 +8006,7 @@
             "name": "Pumping Station"
         },
         "man_made/silo": {
+            "icon": "poi-silo",
             "fields": [
                 "building_area",
                 "crop"
@@ -7048,6 +8026,7 @@
             "name": "Silo"
         },
         "man_made/storage_tank": {
+            "icon": "poi-storage-tank",
             "fields": [
                 "building_area",
                 "content"
@@ -7068,7 +8047,7 @@
             "name": "Storage Tank"
         },
         "man_made/surveillance_camera": {
-            "icon": "camera",
+            "icon": "attraction",
             "geometry": [
                 "point"
             ],
@@ -7102,7 +8081,7 @@
             "name": "Surveillance Camera"
         },
         "man_made/surveillance": {
-            "icon": "camera",
+            "icon": "attraction",
             "geometry": [
                 "point"
             ],
@@ -7145,6 +8124,7 @@
             "name": "Survey Point"
         },
         "man_made/tower": {
+            "icon": "poi-tower",
             "fields": [
                 "tower/type",
                 "tower/construction",
@@ -7194,6 +8174,7 @@
             "name": "Water Tower"
         },
         "man_made/water_well": {
+            "icon": "water",
             "fields": [
                 "operator"
             ],
@@ -7222,133 +8203,35 @@
             "name": "Water Works"
         },
         "man_made/works": {
+            "icon": "industry",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "product"
+            ],
             "geometry": [
                 "point",
                 "area"
             ],
             "terms": [
-                "car assembly plant",
-                "aluminium processing plant",
+                "assembly",
+                "build",
                 "brewery",
-                "furniture manufacture factory",
-                "oil refinery",
-                "plastic recycling"
+                "car",
+                "plant",
+                "plastic",
+                "processing",
+                "manufacture",
+                "refinery"
             ],
             "tags": {
                 "man_made": "works"
             },
-            "name": "Works"
-        },
-        "military/airfield": {
-            "icon": "airfield",
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "airfield"
-            },
-            "name": "Airfield"
-        },
-        "military/barracks": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "barracks"
-            },
-            "name": "Barracks"
-        },
-        "military/bunker": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "bunker"
-            },
-            "name": "Bunker"
-        },
-        "military/checkpoint": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "checkpoint"
-            },
-            "name": "Checkpoint"
-        },
-        "military/danger_area": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "danger_area"
-            },
-            "name": "Danger Area"
-        },
-        "military/naval_base": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "naval_base"
-            },
-            "name": "Naval Base"
-        },
-        "military/obstacle_course": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "obstacle_course"
-            },
-            "name": "Obstacle Course"
-        },
-        "military/range": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "range"
-            },
-            "name": "Military Range"
-        },
-        "military/training_area": {
-            "geometry": [
-                "point",
-                "vertex",
-                "area"
-            ],
-            "terms": [],
-            "tags": {
-                "military": "training_area"
-            },
-            "name": "Training area"
+            "name": "Factory"
         },
         "natural": {
+            "icon": "natural",
             "fields": [
                 "natural"
             ],
@@ -7362,18 +8245,32 @@
             },
             "name": "Natural"
         },
+        "natural/bare_rock": {
+            "geometry": [
+                "area"
+            ],
+            "tags": {
+                "natural": "bare_rock"
+            },
+            "terms": [
+                "rock"
+            ],
+            "name": "Bare Rock"
+        },
         "natural/bay": {
+            "icon": "poi-beach",
             "geometry": [
                 "point",
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "bay"
             },
+            "terms": [],
             "name": "Bay"
         },
         "natural/beach": {
+            "icon": "poi-beach",
             "fields": [
                 "surface"
             ],
@@ -7381,13 +8278,16 @@
                 "point",
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "beach"
             },
+            "terms": [
+                "shore"
+            ],
             "name": "Beach"
         },
         "natural/cave_entrance": {
+            "icon": "triangle",
             "geometry": [
                 "point",
                 "area"
@@ -7396,6 +8296,9 @@
                 "fee",
                 "access_simple"
             ],
+            "tags": {
+                "natural": "cave_entrance"
+            },
             "terms": [
                 "cavern",
                 "hollow",
@@ -7403,79 +8306,81 @@
                 "shelter",
                 "cavity"
             ],
-            "tags": {
-                "natural": "cave_entrance"
-            },
             "name": "Cave Entrance"
         },
         "natural/cliff": {
+            "icon": "triangle",
             "geometry": [
                 "point",
                 "vertex",
                 "line",
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "cliff"
             },
+            "terms": [
+                "escarpment"
+            ],
             "name": "Cliff"
         },
         "natural/coastline": {
             "geometry": [
                 "line"
             ],
-            "terms": [
-                "shore"
-            ],
             "tags": {
                 "natural": "coastline"
             },
+            "terms": [
+                "shore"
+            ],
             "name": "Coastline"
         },
         "natural/fell": {
             "geometry": [
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "fell"
             },
+            "terms": [],
             "name": "Fell"
         },
         "natural/glacier": {
             "geometry": [
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "glacier"
             },
+            "terms": [],
             "name": "Glacier"
         },
         "natural/grassland": {
             "geometry": [
-                "point",
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "grassland"
             },
+            "terms": [
+                "prairie",
+                "savanna"
+            ],
             "name": "Grassland"
         },
         "natural/heath": {
             "geometry": [
                 "area"
             ],
-            "terms": [],
             "tags": {
                 "natural": "heath"
             },
+            "terms": [],
             "name": "Heath"
         },
         "natural/peak": {
-            "icon": "triangle",
+            "icon": "mountain",
             "fields": [
                 "elevation"
             ],
@@ -7503,6 +8408,18 @@
             ],
             "name": "Peak"
         },
+        "natural/ridge": {
+            "geometry": [
+                "line"
+            ],
+            "tags": {
+                "natural": "ridge"
+            },
+            "terms": [
+                "crest"
+            ],
+            "name": "Ridge"
+        },
         "natural/saddle": {
             "icon": "triangle-stroked",
             "fields": [
@@ -7521,6 +8438,18 @@
                 "top"
             ],
             "name": "Saddle"
+        },
+        "natural/sand": {
+            "geometry": [
+                "area"
+            ],
+            "tags": {
+                "natural": "sand"
+            },
+            "terms": [
+                "desert"
+            ],
+            "name": "Sand"
         },
         "natural/scree": {
             "geometry": [
@@ -7548,51 +8477,52 @@
             "name": "Scrub"
         },
         "natural/spring": {
+            "icon": "water",
             "geometry": [
                 "point",
                 "vertex"
             ],
-            "terms": [],
             "tags": {
                 "natural": "spring"
             },
+            "terms": [],
             "name": "Spring"
         },
         "natural/tree_row": {
+            "icon": "park",
             "fields": [
                 "leaf_type",
                 "leaf_cycle",
                 "denotation"
             ],
-            "icon": "park",
             "geometry": [
                 "line"
             ],
-            "terms": [],
             "tags": {
                 "natural": "tree_row"
             },
+            "terms": [],
             "name": "Tree row"
         },
         "natural/tree": {
+            "icon": "park",
             "fields": [
                 "leaf_type_singular",
                 "leaf_cycle_singular",
                 "denotation"
             ],
-            "icon": "park",
             "geometry": [
                 "point",
                 "vertex"
             ],
-            "terms": [],
             "tags": {
                 "natural": "tree"
             },
+            "terms": [],
             "name": "Tree"
         },
         "natural/volcano": {
-            "icon": "triangle",
+            "icon": "volcano",
             "fields": [
                 "elevation"
             ],
@@ -7610,6 +8540,7 @@
             "name": "Volcano"
         },
         "natural/water": {
+            "icon": "water",
             "fields": [
                 "water"
             ],
@@ -7619,10 +8550,10 @@
             "tags": {
                 "natural": "water"
             },
-            "icon": "water",
             "name": "Water"
         },
         "natural/water/lake": {
+            "icon": "water",
             "geometry": [
                 "area"
             ],
@@ -7635,10 +8566,10 @@
                 "loch",
                 "mere"
             ],
-            "icon": "water",
             "name": "Lake"
         },
         "natural/water/pond": {
+            "icon": "water",
             "geometry": [
                 "area"
             ],
@@ -7653,10 +8584,10 @@
                 "pool",
                 "mere"
             ],
-            "icon": "water",
             "name": "Pond"
         },
         "natural/water/reservoir": {
+            "icon": "water",
             "geometry": [
                 "area"
             ],
@@ -7664,7 +8595,6 @@
                 "natural": "water",
                 "water": "reservoir"
             },
-            "icon": "water",
             "name": "Reservoir"
         },
         "natural/wetland": {
@@ -7683,7 +8613,7 @@
             "name": "Wetland"
         },
         "natural/wood": {
-            "icon": "park2",
+            "icon": "park-alt1",
             "fields": [
                 "leaf_type",
                 "leaf_cycle"
@@ -7699,6 +8629,21 @@
                 "tree"
             ],
             "name": "Wood"
+        },
+        "noexit/yes": {
+            "icon": "barrier",
+            "geometry": [
+                "vertex"
+            ],
+            "terms": [
+                "no exit",
+                "road end",
+                "dead end"
+            ],
+            "tags": {
+                "noexit": "yes"
+            },
+            "name": "No Exit"
         },
         "office": {
             "icon": "commercial",
@@ -7811,6 +8756,29 @@
             },
             "terms": [],
             "name": "Company Office"
+        },
+        "office/coworking": {
+            "icon": "commercial",
+            "fields": [
+                "address",
+                "building_area",
+                "opening_hours",
+                "internet_access",
+                "internet_access/fee",
+                "internet_access/ssid"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "coworking",
+                "office"
+            ],
+            "tags": {
+                "office": "coworking"
+            },
+            "name": "Coworking Space"
         },
         "office/educational_institution": {
             "icon": "commercial",
@@ -7982,6 +8950,31 @@
             },
             "terms": [],
             "name": "Law Office"
+        },
+        "office/lawyer/notary": {
+            "icon": "suitcase",
+            "fields": [
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "vertex",
+                "area"
+            ],
+            "tags": {
+                "office": "lawyer",
+                "lawyer": "notary"
+            },
+            "terms": [
+                "clerk",
+                "signature",
+                "wills",
+                "deeds",
+                "estate"
+            ],
+            "name": "Notary Office"
         },
         "office/newspaper": {
             "icon": "commercial",
@@ -8178,6 +9171,7 @@
             "name": "Hamlet"
         },
         "place/island": {
+            "icon": "mountain",
             "geometry": [
                 "point",
                 "area"
@@ -8198,6 +9192,7 @@
             "name": "Island"
         },
         "place/isolated_dwelling": {
+            "icon": "home",
             "geometry": [
                 "point",
                 "area"
@@ -8208,7 +9203,7 @@
             "name": "Isolated Dwelling"
         },
         "place/locality": {
-            "icon": "marker",
+            "icon": "triangle-stroked",
             "geometry": [
                 "point",
                 "area"
@@ -8235,6 +9230,36 @@
             ],
             "name": "Neighborhood"
         },
+        "place/quarter": {
+            "icon": "triangle-stroked",
+            "fields": [
+                "population"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "place": "quarter"
+            },
+            "terms": [
+                "boro",
+                "borough",
+                "quarter"
+            ],
+            "name": "Sub-Borough / Quarter"
+        },
+        "place/square": {
+            "icon": "poi-foot",
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "place": "square"
+            },
+            "name": "Square"
+        },
         "place/suburb": {
             "icon": "triangle-stroked",
             "fields": [
@@ -8248,10 +9273,11 @@
                 "place": "suburb"
             },
             "terms": [
-                "Boro",
-                "Quarter"
+                "boro",
+                "borough",
+                "quarter"
             ],
-            "name": "Borough"
+            "name": "Borough / Suburb"
         },
         "place/town": {
             "icon": "town",
@@ -8306,6 +9332,7 @@
             "searchable": false
         },
         "power/generator": {
+            "icon": "poi-power",
             "fields": [
                 "operator",
                 "generator/source",
@@ -8323,24 +9350,54 @@
             "name": "Power Generator"
         },
         "power/line": {
+            "icon": "power-line",
             "geometry": [
                 "line"
             ],
             "tags": {
                 "power": "line"
             },
-            "name": "Power Line",
-            "icon": "power-line"
+            "name": "Power Line"
         },
         "power/minor_line": {
+            "icon": "power-line",
             "geometry": [
                 "line"
             ],
             "tags": {
                 "power": "minor_line"
             },
-            "name": "Minor Power Line",
-            "icon": "power-line"
+            "name": "Minor Power Line"
+        },
+        "power/plant": {
+            "icon": "industry",
+            "fields": [
+                "operator"
+            ],
+            "geometry": [
+                "area"
+            ],
+            "tags": {
+                "power": "plant"
+            },
+            "addTags": {
+                "power": "plant",
+                "landuse": "industrial"
+            },
+            "removeTags": {
+                "power": "plant",
+                "landuse": "industrial"
+            },
+            "terms": [
+                "coal",
+                "gas",
+                "generat*",
+                "hydro",
+                "nuclear",
+                "power",
+                "station"
+            ],
+            "name": "Power Station Grounds"
         },
         "power/pole": {
             "geometry": [
@@ -8352,6 +9409,7 @@
             "name": "Power Pole"
         },
         "power/substation": {
+            "icon": "poi-power",
             "fields": [
                 "substation",
                 "operator",
@@ -8376,6 +9434,7 @@
             "name": "High-Voltage Tower"
         },
         "power/transformer": {
+            "icon": "poi-power",
             "geometry": [
                 "point",
                 "vertex",
@@ -8387,6 +9446,7 @@
             "name": "Transformer"
         },
         "public_transport/platform": {
+            "icon": "bus",
             "fields": [
                 "ref",
                 "network",
@@ -8469,6 +9529,7 @@
             "name": "Disused Railway"
         },
         "railway/funicular": {
+            "icon": "railway-rail",
             "geometry": [
                 "line"
             ],
@@ -8487,7 +9548,6 @@
             "tags": {
                 "railway": "funicular"
             },
-            "icon": "railway-rail",
             "name": "Funicular"
         },
         "railway/halt": {
@@ -8563,6 +9623,7 @@
             "name": "Narrow Gauge Rail"
         },
         "railway/platform": {
+            "icon": "rail",
             "geometry": [
                 "point",
                 "vertex",
@@ -8618,7 +9679,7 @@
             "name": "Railway Station"
         },
         "railway/subway_entrance": {
-            "icon": "rail-metro",
+            "icon": "entrance",
             "geometry": [
                 "point"
             ],
@@ -8645,6 +9706,26 @@
             "terms": [],
             "name": "Subway"
         },
+        "railway/tram_stop": {
+            "icon": "rail-light",
+            "fields": [
+                "network",
+                "operator"
+            ],
+            "geometry": [
+                "vertex"
+            ],
+            "tags": {
+                "railway": "tram_stop"
+            },
+            "terms": [
+                "light rail",
+                "streetcar",
+                "tram",
+                "trolley"
+            ],
+            "name": "Tram Stop"
+        },
         "railway/tram": {
             "icon": "railway-light-rail",
             "geometry": [
@@ -8660,7 +9741,10 @@
                 "service_rail"
             ],
             "terms": [
-                "streetcar"
+                "light rail",
+                "streetcar",
+                "tram",
+                "trolley"
             ],
             "name": "Tram"
         },
@@ -9137,7 +10221,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "geometry": [
                 "point",
@@ -9160,7 +10245,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "geometry": [
                 "point",
@@ -9497,7 +10583,7 @@
             "name": "Department Store"
         },
         "shop/doityourself": {
-            "icon": "shop",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -9654,7 +10740,7 @@
             "name": "Fashion Store"
         },
         "shop/florist": {
-            "icon": "shop",
+            "icon": "florist",
             "fields": [
                 "operator",
                 "address",
@@ -9762,7 +10848,7 @@
             "name": "Furniture Store"
         },
         "shop/garden_centre": {
-            "icon": "shop",
+            "icon": "garden-center",
             "fields": [
                 "operator",
                 "address",
@@ -9783,6 +10869,31 @@
                 "shop": "garden_centre"
             },
             "name": "Garden Center"
+        },
+        "shop/gas": {
+            "icon": "shop",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "terms": [
+                "cng",
+                "lpg",
+                "natural gas",
+                "propane",
+                "refill",
+                "tank"
+            ],
+            "tags": {
+                "shop": "gas"
+            },
+            "name": "Bottled Gas Shop"
         },
         "shop/gift": {
             "icon": "gift",
@@ -9846,7 +10957,7 @@
             "name": "Hairdresser"
         },
         "shop/hardware": {
-            "icon": "shop",
+            "icon": "poi-tool",
             "fields": [
                 "operator",
                 "address",
@@ -10138,7 +11249,7 @@
             "name": "Medical Supply Store"
         },
         "shop/mobile_phone": {
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "fields": [
                 "operator",
                 "address",
@@ -10384,6 +11495,23 @@
             },
             "name": "Pawn Shop"
         },
+        "shop/perfumery": {
+            "icon": "shop",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "shop": "perfumery"
+            },
+            "name": "Perfume Store"
+        },
         "shop/pet": {
             "icon": "dog-park",
             "fields": [
@@ -10397,9 +11525,13 @@
                 "area"
             ],
             "terms": [
+                "animal",
                 "cat",
                 "dog",
-                "fish"
+                "fish",
+                "kitten",
+                "puppy",
+                "reptile"
             ],
             "tags": {
                 "shop": "pet"
@@ -10407,7 +11539,7 @@
             "name": "Pet Store"
         },
         "shop/photo": {
-            "icon": "camera",
+            "icon": "attraction",
             "fields": [
                 "operator",
                 "address",
@@ -10675,7 +11807,7 @@
             "name": "Tattoo Parlor"
         },
         "shop/tea": {
-            "icon": "cafe",
+            "icon": "teahouse",
             "fields": [
                 "operator",
                 "address",
@@ -10811,7 +11943,7 @@
             "name": "Variety Store"
         },
         "shop/video_games": {
-            "icon": "shop",
+            "icon": "gaming",
             "fields": [
                 "operator",
                 "address",
@@ -10846,6 +11978,23 @@
                 "shop": "video"
             },
             "name": "Video Store"
+        },
+        "shop/watches": {
+            "icon": "shop",
+            "fields": [
+                "operator",
+                "address",
+                "building_area",
+                "opening_hours"
+            ],
+            "geometry": [
+                "point",
+                "area"
+            ],
+            "tags": {
+                "shop": "watches"
+            },
+            "name": "Watches Shop"
         },
         "shop/water_sports": {
             "icon": "shop",
@@ -10922,6 +12071,7 @@
             "name": "Wine Shop"
         },
         "tourism": {
+            "icon": "attraction",
             "fields": [
                 "tourism"
             ],
@@ -10976,7 +12126,7 @@
             "name": "Guest Apartment / Condo"
         },
         "tourism/aquarium": {
-            "icon": "water",
+            "icon": "aquarium",
             "fields": [
                 "operator",
                 "address",
@@ -11200,6 +12350,7 @@
             "name": "Hotel"
         },
         "tourism/information": {
+            "icon": "information",
             "fields": [
                 "information",
                 "operator",
@@ -11217,6 +12368,7 @@
             "name": "Information"
         },
         "tourism/information/board": {
+            "icon": "information",
             "fields": [
                 "operator",
                 "board_type"
@@ -11232,6 +12384,7 @@
             "name": "Information Board"
         },
         "tourism/information/guidepost": {
+            "icon": "information",
             "fields": [
                 "operator",
                 "ref"
@@ -11247,6 +12400,7 @@
             "name": "Guidepost"
         },
         "tourism/information/map": {
+            "icon": "information",
             "fields": [
                 "operator",
                 "map_type",
@@ -11263,6 +12417,7 @@
             "name": "Map"
         },
         "tourism/information/office": {
+            "icon": "information",
             "fields": [
                 "operator",
                 "address",
@@ -11329,7 +12484,7 @@
             "name": "Museum"
         },
         "tourism/picnic_site": {
-            "icon": "park",
+            "icon": "picnic-site",
             "fields": [
                 "operator",
                 "address",
@@ -11349,6 +12504,7 @@
             "name": "Picnic Site"
         },
         "tourism/theme_park": {
+            "icon": "amusement-park",
             "fields": [
                 "operator",
                 "address",
@@ -11364,6 +12520,7 @@
             "name": "Theme Park"
         },
         "tourism/viewpoint": {
+            "icon": "poi-binoculars",
             "geometry": [
                 "point",
                 "vertex"
@@ -11393,6 +12550,7 @@
             "name": "Zoo"
         },
         "traffic_calming": {
+            "icon": "poi-warning",
             "fields": [
                 "traffic_calming",
                 "parallel_direction"
@@ -11413,6 +12571,7 @@
             "name": "Traffic Calming"
         },
         "traffic_calming/bump": {
+            "icon": "poi-warning",
             "fields": [
                 "surface",
                 "parallel_direction"
@@ -11432,6 +12591,7 @@
             "name": "Speed Bump"
         },
         "traffic_calming/chicane": {
+            "icon": "poi-warning",
             "fields": [
                 "parallel_direction"
             ],
@@ -11450,6 +12610,7 @@
             "name": "Traffic Chicane"
         },
         "traffic_calming/choker": {
+            "icon": "poi-warning",
             "fields": [
                 "parallel_direction"
             ],
@@ -11467,6 +12628,7 @@
             "name": "Traffic Choker"
         },
         "traffic_calming/cushion": {
+            "icon": "poi-warning",
             "fields": [
                 "surface",
                 "parallel_direction"
@@ -11487,6 +12649,7 @@
             "name": "Speed Cushion"
         },
         "traffic_calming/dip": {
+            "icon": "poi-warning",
             "fields": [
                 "surface",
                 "parallel_direction"
@@ -11505,6 +12668,7 @@
             "name": "Dip"
         },
         "traffic_calming/hump": {
+            "icon": "poi-warning",
             "fields": [
                 "surface",
                 "parallel_direction"
@@ -11524,7 +12688,7 @@
             "name": "Speed Hump"
         },
         "traffic_calming/island": {
-            "icon": "circle",
+            "icon": "poi-warning",
             "geometry": [
                 "vertex"
             ],
@@ -11539,6 +12703,7 @@
             "name": "Traffic Island"
         },
         "traffic_calming/rumble_strip": {
+            "icon": "poi-warning",
             "fields": [
                 "parallel_direction"
             ],
@@ -11557,6 +12722,7 @@
             "name": "Rumble Strip"
         },
         "traffic_calming/table": {
+            "icon": "poi-warning",
             "fields": [
                 "surface"
             ],
@@ -12121,6 +13287,7 @@
             "name": "Riverbank"
         },
         "waterway/sanitary_dump_station": {
+            "icon": "poi-storage-tank",
             "fields": [
                 "operator",
                 "access_toilets",
@@ -12191,7 +13358,7 @@
             "name": "Stream"
         },
         "waterway/water_point": {
-            "icon": "water",
+            "icon": "drinking-water",
             "geometry": [
                 "area",
                 "vertex",
@@ -12201,6 +13368,23 @@
                 "waterway": "water_point"
             },
             "name": "Marine Drinking Water"
+        },
+        "waterway/waterfall": {
+            "icon": "water",
+            "fields": [
+                "height",
+                "width"
+            ],
+            "geometry": [
+                "vertex"
+            ],
+            "terms": [
+                "fall"
+            ],
+            "tags": {
+                "waterway": "waterfall"
+            },
+            "name": "Waterfall"
         },
         "waterway/weir": {
             "icon": "dam",
@@ -35519,7 +36703,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35538,7 +36723,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35557,7 +36743,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35576,7 +36763,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35595,7 +36783,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35614,7 +36803,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35633,7 +36823,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35652,7 +36843,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35671,7 +36863,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35690,7 +36883,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35709,7 +36903,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35728,7 +36923,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35747,7 +36943,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35766,7 +36963,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35785,7 +36983,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35804,7 +37003,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35823,7 +37023,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -35842,7 +37043,8 @@
                 "operator",
                 "address",
                 "building_area",
-                "opening_hours"
+                "opening_hours",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36004,7 +37206,7 @@
                 "shop": "doityourself"
             },
             "name": "Hornbach",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36023,7 +37225,7 @@
                 "shop": "doityourself"
             },
             "name": "B&Q",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36042,7 +37244,7 @@
                 "shop": "doityourself"
             },
             "name": "Hubo",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36061,7 +37263,7 @@
                 "shop": "doityourself"
             },
             "name": "Mr Bricolage",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36080,7 +37282,7 @@
                 "shop": "doityourself"
             },
             "name": "Gamma",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36099,7 +37301,7 @@
                 "shop": "doityourself"
             },
             "name": "OBI",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36118,7 +37320,7 @@
                 "shop": "doityourself"
             },
             "name": "Lowes",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36137,7 +37339,7 @@
                 "shop": "doityourself"
             },
             "name": "Wickes",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36156,7 +37358,7 @@
                 "shop": "doityourself"
             },
             "name": "Hagebau",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36175,7 +37377,7 @@
                 "shop": "doityourself"
             },
             "name": "Max Bahr",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36194,7 +37396,7 @@
                 "shop": "doityourself"
             },
             "name": "Castorama",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36213,7 +37415,7 @@
                 "shop": "doityourself"
             },
             "name": "Rona",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36232,7 +37434,7 @@
                 "shop": "doityourself"
             },
             "name": "Home Depot",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36251,7 +37453,7 @@
                 "shop": "doityourself"
             },
             "name": "Toom Baumarkt",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36270,7 +37472,7 @@
                 "shop": "doityourself"
             },
             "name": "Homebase",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36289,7 +37491,7 @@
                 "shop": "doityourself"
             },
             "name": "Baumax",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36308,7 +37510,7 @@
                 "shop": "doityourself"
             },
             "name": "Lagerhaus",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36327,7 +37529,7 @@
                 "shop": "doityourself"
             },
             "name": "Bauhaus",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36346,7 +37548,7 @@
                 "shop": "doityourself"
             },
             "name": "Canadian Tire",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36365,7 +37567,7 @@
                 "shop": "doityourself"
             },
             "name": "Leroy Merlin",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36384,7 +37586,7 @@
                 "shop": "doityourself"
             },
             "name": "Hellweg",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36403,7 +37605,7 @@
                 "shop": "doityourself"
             },
             "name": "Brico",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36422,7 +37624,7 @@
                 "shop": "doityourself"
             },
             "name": "Bricomarché",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36441,7 +37643,7 @@
                 "shop": "doityourself"
             },
             "name": "Toom",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36460,7 +37662,7 @@
                 "shop": "doityourself"
             },
             "name": "Hagebaumarkt",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36479,7 +37681,7 @@
                 "shop": "doityourself"
             },
             "name": "Praktiker",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36498,7 +37700,7 @@
                 "shop": "doityourself"
             },
             "name": "Menards",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36517,7 +37719,7 @@
                 "shop": "doityourself"
             },
             "name": "Weldom",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36536,7 +37738,7 @@
                 "shop": "doityourself"
             },
             "name": "Bunnings Warehouse",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36555,7 +37757,7 @@
                 "shop": "doityourself"
             },
             "name": "Ace Hardware",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36574,7 +37776,7 @@
                 "shop": "doityourself"
             },
             "name": "Home Hardware",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36593,7 +37795,7 @@
                 "shop": "doityourself"
             },
             "name": "Стройматериалы",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36612,7 +37814,7 @@
                 "shop": "doityourself"
             },
             "name": "Bricorama",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36631,7 +37833,7 @@
                 "shop": "doityourself"
             },
             "name": "Point P",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -36736,7 +37938,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36756,7 +37959,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36776,7 +37980,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36796,7 +38001,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36816,7 +38022,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36836,7 +38043,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36856,7 +38064,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36876,7 +38085,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36896,7 +38106,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36916,7 +38127,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36936,7 +38148,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36956,7 +38169,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36976,7 +38190,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -36996,7 +38211,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37016,7 +38232,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37036,7 +38253,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37056,7 +38274,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37076,7 +38295,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37096,7 +38316,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37116,7 +38337,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37136,7 +38358,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37156,7 +38379,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -37176,7 +38400,8 @@
                 "address",
                 "building_area",
                 "opening_hours",
-                "second_hand"
+                "second_hand",
+                "service/vehicle"
             ],
             "suggestion": true
         },
@@ -40753,7 +41978,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Билайн",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40772,7 +41997,7 @@
                 "shop": "mobile_phone"
             },
             "name": "ソフトバンクショップ (SoftBank shop)",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40791,7 +42016,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Vodafone",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40810,7 +42035,7 @@
                 "shop": "mobile_phone"
             },
             "name": "O2",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40829,7 +42054,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Carphone Warehouse",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40848,7 +42073,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Orange",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40867,7 +42092,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Verizon Wireless",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40886,7 +42111,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Sprint",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40905,7 +42130,7 @@
                 "shop": "mobile_phone"
             },
             "name": "T-Mobile",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40924,7 +42149,7 @@
                 "shop": "mobile_phone"
             },
             "name": "МТС",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40943,7 +42168,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Евросеть",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40962,7 +42187,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Bell",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -40981,7 +42206,7 @@
                 "shop": "mobile_phone"
             },
             "name": "The Phone House",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41000,7 +42225,7 @@
                 "shop": "mobile_phone"
             },
             "name": "SFR",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41019,7 +42244,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Связной",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41038,7 +42263,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Мегафон",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41057,7 +42282,7 @@
                 "shop": "mobile_phone"
             },
             "name": "AT&T",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41076,7 +42301,7 @@
                 "shop": "mobile_phone"
             },
             "name": "ドコモショップ (docomo shop)",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41095,7 +42320,7 @@
                 "shop": "mobile_phone"
             },
             "name": "au",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41114,7 +42339,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Movistar",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41133,7 +42358,7 @@
                 "shop": "mobile_phone"
             },
             "name": "Bitė",
-            "icon": "mobilephone",
+            "icon": "mobile-phone",
             "geometry": [
                 "point",
                 "area"
@@ -41342,7 +42567,7 @@
                 "shop": "hardware"
             },
             "name": "1000 мелочей",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"
@@ -41361,7 +42586,7 @@
                 "shop": "hardware"
             },
             "name": "Хозтовары",
-            "icon": "shop",
+            "icon": "poi-tool",
             "geometry": [
                 "point",
                 "area"

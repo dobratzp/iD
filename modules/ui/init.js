@@ -29,13 +29,19 @@ import { uiSpinner } from './spinner';
 import { uiSplash } from './splash';
 import { uiStatus } from './status';
 import { uiUndoRedo } from './undo_redo';
+import { uiVersion } from './version';
 import { uiZoom } from './zoom';
 import { uiCmd } from './cmd';
 
 
 export function uiInit(context) {
+    var uiInitCounter = 0;
+
 
     function render(container) {
+        container
+            .attr('dir', textDirection);
+
         var map = context.map();
 
         var hash = behaviorHash(context);
@@ -58,7 +64,8 @@ export function uiInit(context) {
 
         var content = container
             .append('div')
-            .attr('id', 'content');
+            .attr('id', 'content')
+            .attr('class', 'active');
 
         var bar = content
             .append('div')
@@ -70,10 +77,6 @@ export function uiInit(context) {
             .attr('id', 'map')
             .attr('dir', 'ltr')
             .call(map);
-
-        if (textDirection === 'rtl') {
-            d3.select('body').attr('dir', 'rtl');
-        }
 
         content
             .call(uiMapInMap(context));
@@ -114,6 +117,7 @@ export function uiInit(context) {
             .attr('class', 'spinner')
             .call(uiSpinner(context));
 
+
         var controls = bar
             .append('div')
             .attr('class', 'map-controls');
@@ -143,6 +147,7 @@ export function uiInit(context) {
             .attr('class', 'map-control help-control')
             .call(uiHelp(context));
 
+
         var about = content
             .append('div')
             .attr('id', 'about');
@@ -153,6 +158,12 @@ export function uiInit(context) {
             .attr('dir', 'ltr')
             .call(uiAttribution(context));
 
+        about
+            .append('div')
+            .attr('class', 'api-status')
+            .call(uiStatus(context));
+
+
         var footer = about
             .append('div')
             .attr('id', 'footer')
@@ -160,31 +171,33 @@ export function uiInit(context) {
 
         footer
             .append('div')
-            .attr('class', 'api-status')
-            .call(uiStatus(context));
+            .attr('id', 'flash-wrap')
+            .attr('class', 'footer-hide');
 
-        footer
+        var footerWrap = footer
+            .append('div')
+            .attr('id', 'footer-wrap')
+            .attr('class', 'footer-show');
+
+        footerWrap
             .append('div')
             .attr('id', 'scale-block')
             .call(uiScale(context));
 
-        var aboutList = footer
+        var aboutList = footerWrap
             .append('div')
             .attr('id', 'info-block')
             .append('ul')
             .attr('id', 'about-list');
 
         if (!context.embed()) {
-            aboutList.call(uiAccount(context));
+            aboutList
+                .call(uiAccount(context));
         }
 
         aboutList
             .append('li')
-            .append('a')
-            .attr('target', '_blank')
-            .attr('tabindex', -1)
-            .attr('href', 'https://github.com/openstreetmap/iD')
-            .text(context.version);
+            .call(uiVersion(context));
 
         var issueLinks = aboutList
             .append('li');
@@ -228,6 +241,7 @@ export function uiInit(context) {
 
         var mapDimensions = map.dimensions();
 
+
         function onResize() {
             mapDimensions = utilGetDimensions(content, true);
             map.dimensions(mapDimensions);
@@ -246,6 +260,7 @@ export function uiInit(context) {
                 }
             };
         }
+
 
         // pan amount
         var pa = 10;
@@ -266,9 +281,11 @@ export function uiInit(context) {
 
         context.enter(modeBrowse(context));
 
-        context.container()
-            .call(uiSplash(context))
-            .call(uiRestore(context));
+        if (!uiInitCounter++) {
+            context.container()
+                .call(uiSplash(context))
+                .call(uiRestore(context));
+        }
 
         var authenticating = uiLoading(context)
             .message(t('loading_auth'))
@@ -282,10 +299,15 @@ export function uiInit(context) {
             .on('authDone.ui', function() {
                 authenticating.close();
             });
+
+        uiInitCounter++;
     }
 
 
+    var renderCallback;
+
     function ui(node, callback) {
+        renderCallback = callback;
         var container = d3.select(node);
         context.container(container);
         context.loadLocale(function(err) {
@@ -297,6 +319,19 @@ export function uiInit(context) {
             }
         });
     }
+
+
+    ui.restart = function(arg) {
+        context.locale(arg);
+        context.loadLocale(function(err) {
+            if (!err) {
+                context.container().selectAll('*').remove();
+                render(context.container());
+                if (renderCallback) renderCallback();
+            }
+        });
+    };
+
 
     ui.sidebar = uiSidebar(context);
 

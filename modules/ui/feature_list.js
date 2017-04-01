@@ -1,14 +1,17 @@
 import * as d3 from 'd3';
-import * as sexagesimal from 'sexagesimal';
+import * as sexagesimal from '@mapbox/sexagesimal';
 import { t } from '../util/locale';
 import { geoExtent, geoChooseEdge } from '../geo/index';
 import { modeSelect } from '../modes/index';
 import { osmEntity } from '../osm/index';
 import { svgIcon } from '../svg/index';
+import { services } from '../services/index';
+
 import {
     utilDisplayName,
     utilDisplayType,
-    utilEntityOrMemberSelector
+    utilEntityOrMemberSelector,
+    utilNoAuto
 } from '../util/index';
 
 
@@ -17,28 +20,34 @@ export function uiFeatureList(context) {
 
 
     function featureList(selection) {
-        var header = selection.append('div')
+        var header = selection
+            .append('div')
             .attr('class', 'header fillL cf');
 
         header.append('h3')
             .text(t('inspector.feature_list'));
 
-        var searchWrap = selection.append('div')
+        var searchWrap = selection
+            .append('div')
             .attr('class', 'search-header');
 
-        var search = searchWrap.append('input')
+        var search = searchWrap
+            .append('input')
             .attr('placeholder', t('inspector.search'))
             .attr('type', 'search')
+            .call(utilNoAuto)
             .on('keypress', keypress)
             .on('input', inputevent);
 
         searchWrap
             .call(svgIcon('#icon-search', 'pre-text'));
 
-        var listWrap = selection.append('div')
+        var listWrap = selection
+            .append('div')
             .attr('class', 'inspector-body');
 
-        var list = listWrap.append('div')
+        var list = listWrap
+            .append('div')
             .attr('class', 'feature-list cf');
 
         context
@@ -181,7 +190,7 @@ export function uiFeatureList(context) {
                 .data([0])
                 .enter().append('button')
                 .attr('class', 'geocode-item')
-                .on('click', geocode)
+                .on('click', geocoderSearch)
                 .append('div')
                 .attr('class', 'label')
                 .append('span')
@@ -263,16 +272,15 @@ export function uiFeatureList(context) {
                         edge = geoChooseEdge(context.childNodes(d.entity), center, context.projection);
                     context.map().center(edge.loc);
                 }
-                context.enter(modeSelect(context, [d.entity.id]).suppressMenu(true));
+                context.enter(modeSelect(context, [d.entity.id]));
             } else {
                 context.zoomToEntity(d.id);
             }
         }
 
 
-        function geocode() {
-            var searchVal = encodeURIComponent(search.property('value'));
-            d3.json('https://nominatim.openstreetmap.org/search/' + searchVal + '?limit=10&format=json', function(err, resp) {
+        function geocoderSearch() {
+            services.geocoder.search(search.property('value'), function (err, resp) {
                 geocodeResults = resp || [];
                 drawList();
             });

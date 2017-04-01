@@ -2,18 +2,18 @@
     "fr": {
         "modes": {
             "add_area": {
-                "title": "Surface",
+                "title": "Polygone",
                 "description": "Ajouter des parcs, des bâtiments, des lacs ou d'autres polygones à la carte.",
                 "tail": "Cliquez sur la carte pour ajouter un polygone tel qu'un parc, un lac ou un bâtiment."
             },
             "add_line": {
                 "title": "Ligne",
-                "description": "Les lignes peuvent être des autoroutes, des routes, des chemins ou encore des canaux.",
+                "description": "Ajouter des routes, des rues, des chemins, des canaux ou d'autres lignes à la carte.",
                 "tail": "Cliquez sur la carte pour ajouter une nouvelle ligne telle qu'une route ou un chemin."
             },
             "add_point": {
                 "title": "Point",
-                "description": "Les points peuvent être des restaurants, des monuments, ou encore des boîtes aux lettres.",
+                "description": "Ajouter des restaurants, des monuments, des boîtes aux lettres ou d'autres points à la carte.",
                 "tail": "Cliquez sur la carte pour ajouter un point tel qu'un restaurant ou un monument."
             },
             "browse": {
@@ -43,8 +43,8 @@
             },
             "continue": {
                 "key": "A",
-                "title": "Poursuivre,Reprendre",
-                "description": "Continuer cette ligne.",
+                "title": "Poursuivre",
+                "description": "Poursuivre cette ligne.",
                 "not_eligible": "Aucune ligne ne peut être poursuivie ici.",
                 "multiple": "Plusieurs lignes peuvent être poursuivies ici. Pour choisir une ligne, appuiez sur la touche Shift/Majuscule du clavier et appuiez sur la ligne voulue pour la sélectionner.",
                 "annotation": {
@@ -101,18 +101,30 @@
             },
             "delete": {
                 "title": "Supprimer",
-                "description": "Supprimer définitivement l'objet.",
+                "description": {
+                    "single": "Supprimer cet élément définitivement.",
+                    "multiple": "Supprimer ces éléments définitivement."
+                },
                 "annotation": {
                     "point": "Point supprimé",
                     "vertex": "Nœud d'une ligne supprimé.",
                     "line": "Ligne supprimée.",
                     "area": "Polygone supprimé.",
                     "relation": "Relation supprimée.",
-                    "multiple": "{n} objets supprimés."
+                    "multiple": "{n} éléments supprimés."
                 },
-                "incomplete_relation": "Cet élément ne peut pas être supprimé car il n'a pas été téléchargé dans son intégralité.",
-                "part_of_relation": "Cet élément ne peut pas être effacé parce qu'il fait partie d'une relation. Vous devez d'abord le retirer de la relation.",
-                "connected_to_hidden": "Ceci ne peut être supprimé parce que c'est connecté à un élément caché."
+                "incomplete_relation": {
+                    "single": "Cet élément ne peut pas être supprimé car il n'a pas été téléchargé entièrement.",
+                    "multiple": "Ces éléments ne peuvent pas être supprimés car ils n'ont pas été téléchargé entièrement."
+                },
+                "part_of_relation": {
+                    "single": "Cet élément ne peut pas être supprimé car c'est un membre d'une relation plus grande. La relation doit être supprimé en premier.",
+                    "multiple": "Ces éléments ne peuvent pas être supprimés ceux sont des membres de relations plus grandes. Les relations doivent être supprimées en premier."
+                },
+                "connected_to_hidden": {
+                    "single": "Cet élément ne peut pas être supprimé car il est lié à un autre élément non visible.",
+                    "multiple": "Ces éléments ne peuvent pas être supprimés car ils sont connectés à d'autres éléments non visibles."
+                }
             },
             "add_member": {
                 "annotation": "Membre ajouté à une relation."
@@ -150,29 +162,94 @@
             },
             "move": {
                 "title": "Déplacer",
-                "description": "Déplacer l'élément à un autre endroit.",
+                "description": {
+                    "single": "Déplacer cet élément a un autre emplacement.",
+                    "multiple": "Déplacer ces éléments à un autre emplacement."
+                },
                 "key": "M",
                 "annotation": {
                     "point": "Point déplacé.",
                     "vertex": "Nœud d'une ligne déplacé.",
                     "line": "Ligne déplacée.",
                     "area": "Polygone déplacé.",
-                    "multiple": "Plusieurs objets déplacés"
+                    "multiple": "Plusieurs éléments déplacés."
                 },
-                "incomplete_relation": "Cet élément ne peut pas être déplacé car il n'a pas été téléchargé dans son intégralité.",
-                "too_large": "Ne peut être déplacé parce que n'est pas suffisamment visible dans la fenêtre.",
-                "connected_to_hidden": "Ceci ne peut être bougé parce que c'est connecté à un élément caché."
+                "incomplete_relation": {
+                    "single": "Cet élément ne peut pas être déplacé car il n'est pas téléchargé totalement.",
+                    "multiple": "Ces éléments ne peuvent pas être déplacés car ils ne sont pas téléchargés totalement."
+                },
+                "too_large": {
+                    "single": "Cet élément ne peut pas être déplacé car il n'est pas suffisamment visible actuellement.",
+                    "multiple": "Ces éléments ne peuvent pas être déplacés car ils ne sont pas suffisamment visibles actuellement."
+                },
+                "connected_to_hidden": {
+                    "single": "Cet élément ne peut pas être déplacé car il est connecté à un élément invisible.",
+                    "multiple": "Ces éléments ne peuvent pas être déplacés car ils sont connectés à des éléments invisibles."
+                }
+            },
+            "reflect": {
+                "title": "miroir",
+                "description": {
+                    "long": {
+                        "single": "Effectuer un miroir par rapport au grand axe de l'élément.",
+                        "multiple": "Effectuer un miroir par rapport au grand axe des éléments."
+                    },
+                    "short": {
+                        "single": "Effectuer un miroir par rapport au petit axe de l'élément.",
+                        "multiple": "Effectuer un miroir par rapport au petit axe des éléments."
+                    }
+                },
+                "key": {
+                    "long": "T",
+                    "short": "Y"
+                },
+                "annotation": {
+                    "long": {
+                        "single": "Miroir par rapport au grand axe de l'élément effectué.",
+                        "multiple": "Miroir par rapport au grand axe des éléments effectué."
+                    },
+                    "short": {
+                        "single": "Miroir par rapport au petit axe de l'élément effectué.",
+                        "multiple": "Miroir par rapport au petit axe des éléments effectué."
+                    }
+                },
+                "incomplete_relation": {
+                    "single": "Cet élément ne peut  pas effectuer de miroir car il n'est pas téléchargé totalement.",
+                    "multiple": "Ces éléments ne peuvent pas effectuer de miroir car ils ne sont pas téléchargés totalement."
+                },
+                "too_large": {
+                    "single": "Cet élément ne peut pas effectuer de miroir car il n'est pas suffisamment visible.",
+                    "multiple": "Ces éléments ne peuvent pas effectuer de miroir car ils ne sont pas suffisamment visibles."
+                },
+                "connected_to_hidden": {
+                    "single": "Cet élément ne peut pas effectuer de miroir car il est connecté à un élément non visible.",
+                    "multiple": "Ces éléments ne peuvent pas effectuer de miroir car ils sont connectés à des éléments non visibles."
+                }
             },
             "rotate": {
                 "title": "Rotation",
-                "description": "Pivoter cet objet autour de son centre.",
+                "description": {
+                    "single": "Tourner cet élément autour de son point central.",
+                    "multiple": "Tourner ces éléments autour de leurs points centraux."
+                },
                 "key": "R",
                 "annotation": {
                     "line": "Pivoter la ligne.",
-                    "area": "Pivoter un polyone."
+                    "area": "Pivoter un polygone.",
+                    "multiple": "Tourner plusieurs éléments."
                 },
-                "too_large": "Ne peut être pivoté parce que n'est pas suffisamment visible dans la fenêtre.",
-                "connected_to_hidden": "Ceci ne peut être tourné parce que c'est connecté à un élément caché."
+                "incomplete_relation": {
+                    "single": "Cet élément ne peut pas être tourné car il n'est pas téléchargé totalement.",
+                    "multiple": "Ces éléments ne peuvent pas être tournés car ils ne sont pas téléchargés totalement."
+                },
+                "too_large": {
+                    "single": "Cet élément ne peut pas être tourné car il n'est pas suffisamment visible actuellement.",
+                    "multiple": "Ces éléments ne peuvent pas être tournés car ils ne sont pas suffisamment visibles actuellement."
+                },
+                "connected_to_hidden": {
+                    "single": "Cet élément ne peut pas être tourné car il est connecté à un élément non visible.",
+                    "multiple": "Ces éléments ne peut pas être tournés car ils sont connectés à des éléments non visibles."
+                }
             },
             "reverse": {
                 "title": "Inverser",
@@ -211,12 +288,12 @@
             }
         },
         "undo": {
-            "tooltip": "Annuler action: {action}",
+            "tooltip": "Annuler : {action}",
             "nothing": "Rien à annuler."
         },
         "redo": {
-            "tooltip": "Recréer: {action}",
-            "nothing": "Rien à refaire."
+            "tooltip": "Rétablir : {action}",
+            "nothing": "Rien à rétablir."
         },
         "tooltip_keyhint": "Raccourci :",
         "browser_notice": "Cet éditeur est supporté sous Firefox, Chrome, safari, Opera, et Internet  Explorer 11 et supérieur. Veuillez s'il vous plaît mettre à jour votre navigateur ou utiliser Potlach 2 pour éditer la carte.",
@@ -243,12 +320,12 @@
             "rateLimit": "L'API limite les connexions anonymes. Vous pouvez résoudre ce problème en vous connectant."
         },
         "commit": {
-            "title": "Sauvegarder vos modifications",
+            "title": "Charger sur OpenStreetMap",
             "description_placeholder": "Brève description de vos contributions (requis)",
-            "message_label": "Commentaire de changeset",
+            "message_label": "Commentaire du groupe de modifications",
             "upload_explanation": "Les modifications envoyées seront visibles sur toutes les cartes qui utilisent les données d'OpenStreetMap.",
             "upload_explanation_with_user": "Les modifications envoyées en tant que {user} seront visibles sur toutes les cartes qui utilisent les données d'OpenStreetMap.",
-            "save": "Sauvegarder",
+            "save": "Envoyer",
             "cancel": "Annuler",
             "changes": "{count} changements",
             "warnings": "Attention",
@@ -311,7 +388,7 @@
             "back_tooltip": "Changer l'objet",
             "remove": "Supprimer",
             "search": "Rechercher",
-            "multiselect": "Items sélectionnés",
+            "multiselect": "Éléments sélectionnés",
             "unknown": "Inconnu",
             "incomplete": "<non téléchargé>",
             "feature_list": "Rechercher des objets",
@@ -426,13 +503,13 @@
             "reset": "Réinitialiser"
         },
         "save": {
-            "title": "Sauvegarder",
-            "help": "Envoi des modifications au serveur OpenStreetMap afin qu'elles soient visibles par les autres contributeurs.",
+            "title": "Sauvegarder...",
+            "help": "Vérifiez vos modifications et envoyez les sur OpenStreetMap afin qu'elles soient visibles par les autres contributeurs.",
             "no_changes": "Aucune modification à sauvegarder",
             "error": "Des erreurs sont survenues en tentant de sauvegarder",
             "status_code": "Le serveur a renvoyé le code de statut {code}",
             "unknown_error_details": "Veuillez vérifier que votre ordinateur est connecté au réseau.",
-            "uploading": "Envoi des modifications vers OpenStreetMap.",
+            "uploading": "En cours de téléversement des modifications sur OpenStreetMap ...",
             "unsaved_changes": "Vous avez des modifications non enregistrées",
             "conflict": {
                 "header": "Résoudre les modifications conflictuelles",
@@ -445,13 +522,13 @@
                 "delete": "Laisser la suppression",
                 "download_changes": "Ou télécharger vos changements",
                 "done": "Tous les conflits sont résolus !",
-                "help": "Un autre utilisateur a modifié certains éléments de la carte que vous aviez modifiés changés.\nCliquez sur chaque élément ci-dessous pour plus de détails à propos du conflit, et choisissez si vous conservez vos modifications ou celles de l'autre utilisateur.\n"
+                "help": "Un autre utilisateur a modifié certains éléments de la carte que vous aviez changés.\nCliquez sur chaque élément ci-dessous pour plus de détails à propos du conflit et choisissez si vous conservez vos modifications ou celles de l'autre utilisateur.\n"
             }
         },
         "merge_remote_changes": {
             "conflict": {
-                "deleted": "Cet objet a été supprimé par {user}",
-                "location": "Cet objet a été déplacé à la fois par vous et {user}",
+                "deleted": "Cet élément a été supprimé par {user}.",
+                "location": "Cet élément a été déplacé à la fois par vous et {user}.",
                 "nodelist": "Les nœuds ont été changés à la fois par vous et {user}",
                 "memberlist": "Les membres de la relation  ont été changés à la fois par vous et {user}",
                 "tags": "Vous avez changé le tag <b>{tag}</b> en \"{local}\" et {user} l'a changé en \"{remote}\"."
@@ -466,7 +543,7 @@
             "google": "Partager sur Google+",
             "help_html": "Vos changements devraient apparaître dans le calque \"Standard\" d'ici quelques minutes. Pour d'autres calques et certains éléments, cela peut prendre plus de temps.",
             "help_link_text": "Détails",
-            "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F"
+            "help_link_url": "https://wiki.openstreetmap.org/wiki/FR:FAQ#Je_viens_juste_de_faire_quelques_changements_sur_la_carte._Comment_puis-je_les_voir_.3F"
         },
         "confirm": {
             "okay": "OK",
@@ -489,14 +566,18 @@
             "used_with": "Utilisé avec {type}"
         },
         "validations": {
+            "disconnected_highway": "Route déconnectée",
+            "disconnected_highway_tooltip": "Les routes devraient être reliées à d’autres routes.",
             "untagged_point": "Point sans attribut",
             "untagged_line": "Ligne sans aucun attribut",
             "untagged_area": "Polygone sans aucun attribut",
-            "many_deletions": "Vous allez supprimer {n} objets. Êtes-vous sûr de vouloir faire cela ? Ces éléments seront supprimés de la carte visible sur openstreetmap.org.",
+            "untagged_relation": "Relation sans attributs",
+            "many_deletions": "Vous êtes en train de supprimer {n} éléments. En êtes-vous sûr ? Ils seront supprimés de la carte que tout le monde voit sur openstreetmap.org.",
             "tag_suggests_area": "Cet attribut {tag} suppose que cette ligne devrait être un polygone, or ce n'est pas le cas",
             "untagged_point_tooltip": "Sélectionnez un type d'élément pour décrire ce point.",
             "untagged_line_tooltip": "Sélectionnez un type d'élément pour décrire cette ligne.",
             "untagged_area_tooltip": "Sélectionnez un type d'élément pour décrire cette surface.",
+            "untagged_relation_tooltip": "Sélectionnez un type d’entité décrivant ce qu’est cette relation.",
             "deprecated_tags": "Attributs obsolètes : {tags}"
         },
         "zoom": {
@@ -506,10 +587,10 @@
         "cannot_zoom": "Impossible de zoomer plus en arrière dans ce mode.",
         "full_screen": "Basculer en plein écran",
         "gpx": {
-            "local_layer": "Fichier GPX personnel",
-            "drag_drop": "Glisser et déposer un fichier .gpx sur la page, ou cliquez sur le bouton droit pour rechercher",
-            "zoom": "Zoomer le tracé GPX",
-            "browse": "Recherchez un fichier .gpx"
+            "local_layer": "Fichier local",
+            "drag_drop": "Glissez-déposez un fichier .gpx, .geojson ou .kml sur la page, ou cliquez sur le bouton de droite pour le rechercher dans votre ordinateur.",
+            "zoom": "Zoomer sur la couche",
+            "browse": "Sélectionner un fichier"
         },
         "mapillary_images": {
             "tooltip": "Photos de rue depuis Mapillary",
@@ -630,6 +711,15 @@
                 "category-landuse": {
                     "name": "Éléments d'occupation des sols"
                 },
+                "category-natural-area": {
+                    "name": "Éléments naturels"
+                },
+                "category-natural-line": {
+                    "name": "Éléments naturels"
+                },
+                "category-natural-point": {
+                    "name": "Éléments naturels"
+                },
                 "category-path": {
                     "name": "Éléments de chemins"
                 },
@@ -703,21 +793,36 @@
                 "address": {
                     "label": "Adresse",
                     "placeholders": {
+                        "block_number": "Numéro de bloc",
+                        "block_number!jp": "Bloc numéro",
                         "city": "Ville",
+                        "city!jp": "Ville/Ville/Village/Quartier spécial de Tokyo",
+                        "city!vn": "Ville (plus de 10 000 habitants)",
                         "conscriptionnumber": "123",
                         "country": "Pays",
+                        "county": "Comté",
+                        "county!jp": "District",
                         "district": "District",
+                        "district!vn": "Arrondissement/Ville/District",
                         "floor": "Étage",
                         "hamlet": "Hameau",
                         "housename": "Nom de la maison",
                         "housenumber": "123",
+                        "housenumber!jp": "Bâtiment No./Lot No.",
+                        "neighbourhood": "Voisinage",
+                        "neighbourhood!jp": "Chōme/Aza/Koaza",
                         "place": "Place",
                         "postcode": "Code postal",
                         "province": "Province",
+                        "province!jp": "Préfecture",
+                        "quarter": "Quarter",
+                        "quarter!jp": "Ōaza/Machi",
                         "state": "État",
                         "street": "Rue",
                         "subdistrict": "Sous-district",
-                        "suburb": "Banlieue"
+                        "subdistrict!vn": "Quartier/Commune/Cité",
+                        "suburb": "Banlieue",
+                        "suburb!jp": "quartier"
                     }
                 },
                 "admin_level": {
@@ -784,6 +889,20 @@
                 "barrier": {
                     "label": "Type"
                 },
+                "bath/open_air": {
+                    "label": "Plein air"
+                },
+                "bath/sand_bath": {
+                    "label": "Bain de sable"
+                },
+                "bath/type": {
+                    "label": "Spécialité",
+                    "options": {
+                        "foot_bath": "Bain de pied",
+                        "hot_spring": "Source thermale",
+                        "onsen": "Onsen"
+                    }
+                },
                 "beauty": {
                     "label": "Type de Magasin"
                 },
@@ -820,6 +939,9 @@
                 "building_area": {
                     "label": "Bâtiment"
                 },
+                "bunker_type": {
+                    "label": "Type"
+                },
                 "camera/direction": {
                     "label": "Direction (en degrés dans le sens horaire)",
                     "placeholder": "45, 90, 180, 270"
@@ -830,6 +952,8 @@
                 "camera/type": {
                     "label": "Type de caméra",
                     "options": {
+                        "dome": "Dôme",
+                        "fixed": "Fixée",
                         "panning": "Panoramique"
                     }
                 },
@@ -857,6 +981,9 @@
                         "WNW": "Ouest-Nord-Ouest",
                         "WSW": "Ouest-Sud-Ouest"
                     }
+                },
+                "castle_type": {
+                    "label": "Type"
                 },
                 "clock_direction": {
                     "label": "Sens",
@@ -980,6 +1107,10 @@
                 "elevation": {
                     "label": "Altitude"
                 },
+                "email": {
+                    "label": "Courrier électronique",
+                    "placeholder": "example@example.com"
+                },
                 "emergency": {
                     "label": "Urgence"
                 },
@@ -998,6 +1129,15 @@
                 },
                 "fence_type": {
                     "label": "Type"
+                },
+                "fire_hydrant/position": {
+                    "label": "Position",
+                    "options": {
+                        "green": "Espace vert",
+                        "lane": "Voie",
+                        "parking_lot": "Parking",
+                        "sidewalk": "Trottoir"
+                    }
                 },
                 "fire_hydrant/type": {
                     "label": "Type",
@@ -1050,7 +1190,7 @@
                     "label": "Rampe - à main"
                 },
                 "height": {
-                    "label": "Hauteur (mètres)"
+                    "label": " Hauteur (Mètres)"
                 },
                 "highway": {
                     "label": "Type"
@@ -1375,6 +1515,9 @@
                 "place": {
                     "label": "Type"
                 },
+                "plant": {
+                    "label": "Plante"
+                },
                 "population": {
                     "label": "Population"
                 },
@@ -1383,6 +1526,9 @@
                 },
                 "power_supply": {
                     "label": "Source de courant"
+                },
+                "product": {
+                    "label": "Production"
                 },
                 "railway": {
                     "label": "Type"
@@ -1393,7 +1539,7 @@
                 "recycling_type": {
                     "label": "Type de recyclage",
                     "options": {
-                        "centre": "Déchetterie",
+                        "centre": "Déchèterie",
                         "container": "Benne"
                     }
                 },
@@ -1501,9 +1647,11 @@
                     },
                     "placeholder": "Petites roulettes, roues, hors-piste…"
                 },
+                "social_facility": {
+                    "label": "Type"
+                },
                 "social_facility_for": {
-                    "label": "Personnes desservies",
-                    "placeholder": "Sans-abris, handicapés, enfants, etc."
+                    "label": "Personnes desservies"
                 },
                 "source": {
                     "label": "Source"
@@ -1519,6 +1667,9 @@
                 },
                 "stars": {
                     "label": "Étoiles"
+                },
+                "step_count": {
+                    "label": "Nombre de marches"
                 },
                 "stop": {
                     "label": "Type de stop",
@@ -1559,8 +1710,13 @@
                 "surveillance/type": {
                     "label": "Type de surveillance",
                     "options": {
+                        "ALPR": "Lecteur de plaque d'immatriculation automatique",
+                        "camera": "Caméra de surveillance",
                         "guard": "Gardien"
                     }
+                },
+                "surveillance/zone": {
+                    "label": "Zone de surveillance"
                 },
                 "tactile_paving": {
                     "label": "Équipement de voirie podotactile"
@@ -1582,6 +1738,9 @@
                         "flush": "Toilettes publiques",
                         "pitlatrine": "Latrines"
                     }
+                },
+                "toll": {
+                    "label": "Péage"
                 },
                 "tourism": {
                     "label": "Type"
@@ -1688,16 +1847,28 @@
                     "name": "Télésiège",
                     "terms": "Télésiège,Remontée mécanique"
                 },
+                "aerialway/drag_lift": {
+                    "name": "Téléski",
+                    "terms": "Téléski"
+                },
                 "aerialway/gondola": {
                     "name": "Télécabine",
                     "terms": "Télécabine"
+                },
+                "aerialway/goods": {
+                    "name": "Téléphérique pour marchandises",
+                    "terms": "Téléphérique pour marchandises"
                 },
                 "aerialway/magic_carpet": {
                     "name": "Bande transporteuse de personnes",
                     "terms": "Tapis roulant,Remontée mécanique"
                 },
+                "aerialway/mixed_lift": {
+                    "name": "Télémix, Télécombi",
+                    "terms": "Télémix, Télécombi"
+                },
                 "aerialway/platter": {
-                    "name": "Téléski",
+                    "name": "Téléski à enrouleurs à agrès monoplace",
                     "terms": "Remonte-pente, tire-fesses, téléski à enrouleurs, téléski à perches débrayables"
                 },
                 "aerialway/pylon": {
@@ -1729,7 +1900,7 @@
                 },
                 "aeroway/gate": {
                     "name": "Porte d'embarquement",
-                    "terms": "Porte d'aéroport, Porte d'embarquement"
+                    "terms": "Porte de départ"
                 },
                 "aeroway/hangar": {
                     "name": "Hangar",
@@ -1748,8 +1919,8 @@
                     "terms": "Voie de circulation"
                 },
                 "aeroway/terminal": {
-                    "name": "Terminal aéroportuaire",
-                    "terms": "Terminal, Terminal aéroportuaire"
+                    "name": "Terminal d'aéroport",
+                    "terms": "Terminal"
                 },
                 "amenity": {
                     "name": "Équipement"
@@ -1863,11 +2034,11 @@
                     "terms": "Palais de justice"
                 },
                 "amenity/coworking_space": {
-                    "name": "Espace de bureaux partagés",
-                    "terms": "Espace de coworking,Lieu de coworking,Coworking,Espace de travail collaboratif"
+                    "name": "Espace de bureaux partagés"
                 },
                 "amenity/crematorium": {
-                    "name": "Crématorium"
+                    "name": "Crématorium",
+                    "terms": "Crématorium"
                 },
                 "amenity/dentist": {
                     "name": "Dentiste",
@@ -1914,7 +2085,7 @@
                     "terms": "Station essence, Station service"
                 },
                 "amenity/grave_yard": {
-                    "name": "Cimetière",
+                    "name": "Petit Cimetière",
                     "terms": "Cimetière"
                 },
                 "amenity/grit_bin": {
@@ -1923,7 +2094,7 @@
                 },
                 "amenity/hospital": {
                     "name": "Terrains hospitaliers",
-                    "terms": "Terrains d'hôpital"
+                    "terms": "Terrains d'hôpital, Hôpital"
                 },
                 "amenity/hunting_stand": {
                     "name": "Mirador de chasse",
@@ -1955,11 +2126,14 @@
                 },
                 "amenity/nightclub": {
                     "name": "Boîte de nuit",
-                    "terms": "Boîte de nuit"
+                    "terms": "Boîte de nuit, Discothèque"
+                },
+                "amenity/nursing_home": {
+                    "name": "Maison de repos"
                 },
                 "amenity/parking": {
                     "name": "Parking",
-                    "terms": "Parc de stationnement"
+                    "terms": "Parc de stationnement, Stationnement"
                 },
                 "amenity/parking_entrance": {
                     "name": "Entrée ou sortie de parking",
@@ -2017,6 +2191,10 @@
                     "name": "Pub",
                     "terms": "Pub"
                 },
+                "amenity/public_bath": {
+                    "name": "Bain public",
+                    "terms": "Bain Public"
+                },
                 "amenity/public_bookcase": {
                     "name": "Microbibliothèque",
                     "terms": "Bibliothèque en libre service, Micro-bibliothèque"
@@ -2046,15 +2224,15 @@
                 },
                 "amenity/school": {
                     "name": "Terrains scolaires",
-                    "terms": "Terrains d'école primaire, collège, lycée,  Cycles primaires et secondaires"
+                    "terms": "Terrains d'école primaire, collège, lycée,  Cycles primaires et secondaires, École"
                 },
                 "amenity/shelter": {
                     "name": "Abri",
                     "terms": "Abri"
                 },
                 "amenity/social_facility": {
-                    "name": "Services sociaux",
-                    "terms": "Assistance sociale"
+                    "name": "Établissement de services sociaux",
+                    "terms": "Assistance sociale, Services sociaux"
                 },
                 "amenity/social_facility/food_bank": {
                     "name": "Banque alimentaire",
@@ -2067,6 +2245,10 @@
                 "amenity/social_facility/homeless_shelter": {
                     "name": "Foyer pour sans-abri",
                     "terms": "Foyer pour sans-abri"
+                },
+                "amenity/social_facility/nursing_home": {
+                    "name": "Maison de repos",
+                    "terms": "Maison de repis, Maison de convalescence, Maison de retraite médicalisée"
                 },
                 "amenity/studio": {
                     "name": "Studio",
@@ -2179,6 +2361,10 @@
                     "name": "Poteau",
                     "terms": "Bollard, Potelet"
                 },
+                "barrier/border_control": {
+                    "name": "Poste-frontière",
+                    "terms": "Poste-frontière"
+                },
                 "barrier/cattle_grid": {
                     "name": "Grille à bétail",
                     "terms": "Barrière canadienne"
@@ -2200,7 +2386,7 @@
                 },
                 "barrier/fence": {
                     "name": "Clôture",
-                    "terms": "Clôture"
+                    "terms": "Clôture,Grillage,Grille"
                 },
                 "barrier/gate": {
                     "name": "Portail",
@@ -2305,7 +2491,7 @@
                     "terms": "Serre"
                 },
                 "building/hospital": {
-                    "name": "Hôpital ",
+                    "name": "Bâtiment d'Hôpital",
                     "terms": "Hôpital, Clinique"
                 },
                 "building/hotel": {
@@ -2329,7 +2515,7 @@
                     "terms": "Crèche,Halte-garderie,Jardin d'enfants,École maternelle,École enfantine"
                 },
                 "building/public": {
-                    "name": "Établissement public",
+                    "name": "Bâtiment public",
                     "terms": "Bâtiment public"
                 },
                 "building/residential": {
@@ -2372,7 +2558,7 @@
                     "name": "Gare ferroviaire"
                 },
                 "building/university": {
-                    "name": "Université",
+                    "name": "Bâtiment Universitaire",
                     "terms": "Bâtiment d'université"
                 },
                 "building/warehouse": {
@@ -2412,8 +2598,8 @@
                     "terms": "Brasserie"
                 },
                 "craft/carpenter": {
-                    "name": "Charpentier",
-                    "terms": "Charpentier"
+                    "name": "Menuisier / Charpentier",
+                    "terms": "Charpentier, Menuisier, Ébéniste"
                 },
                 "craft/carpet_layer": {
                     "name": "Pose de moquette et revêtements",
@@ -2453,7 +2639,7 @@
                 },
                 "craft/hvac": {
                     "name": "CVC",
-                    "terms": "chauffage,ventilation,climatisation,chauffagistes"
+                    "terms": "Chauffage, Ventilation, Climatisation, Chauffagistes"
                 },
                 "craft/insulator": {
                     "name": "Technicien thermicien",
@@ -2556,7 +2742,7 @@
                     "terms": "Garnisseur"
                 },
                 "craft/watchmaker": {
-                    "name": "Horloger",
+                    "name": "Horloger - Fabricant de montre ",
                     "terms": "Horloger"
                 },
                 "craft/window_construction": {
@@ -2905,8 +3091,8 @@
                     "terms": "Cimetière"
                 },
                 "landuse/commercial": {
-                    "name": "Zone d'activités",
-                    "terms": "Commerces"
+                    "name": "Zone de bureaux",
+                    "terms": "Zone de bureaux, Cité administrative, Zone d'activités"
                 },
                 "landuse/construction": {
                     "name": "Construction",
@@ -2950,6 +3136,50 @@
                 "landuse/military": {
                     "name": "Zone militaire",
                     "terms": "Zone militaire"
+                },
+                "landuse/military/airfield": {
+                    "name": "Aérodrome Militaire ",
+                    "terms": "Base aérienne, Aéroport militaire"
+                },
+                "landuse/military/barracks": {
+                    "name": "Caserne militaire",
+                    "terms": "Caserne militaire"
+                },
+                "landuse/military/bunker": {
+                    "name": "Bunker",
+                    "terms": "Bunker, Casemate"
+                },
+                "landuse/military/checkpoint": {
+                    "name": "Poste de contrôle militaire",
+                    "terms": "Poste de contrôle,Point de contrôle"
+                },
+                "landuse/military/danger_area": {
+                    "name": "Zone dangereuse",
+                    "terms": "Zone dangereuse"
+                },
+                "landuse/military/naval_base": {
+                    "name": "Base Navale",
+                    "terms": "Base navale"
+                },
+                "landuse/military/nuclear_explosion_site": {
+                    "name": "Site d'explosion nucléaire",
+                    "terms": "Site d'explosion nucléaire"
+                },
+                "landuse/military/obstacle_course": {
+                    "name": "Parcours du combattant",
+                    "terms": "Course d'obstacles"
+                },
+                "landuse/military/office": {
+                    "name": "Bureau Militaire",
+                    "terms": "Bureau militaire, Bureau de recrutement militaire, "
+                },
+                "landuse/military/range": {
+                    "name": "Stand de tir militaire",
+                    "terms": "Champ de tir"
+                },
+                "landuse/military/training_area": {
+                    "name": "Zone d'entraînement militaire",
+                    "terms": "Zone de formation militaire"
                 },
                 "landuse/orchard": {
                     "name": "Verger",
@@ -3031,6 +3261,10 @@
                     "name": "Parcours de golf",
                     "terms": "Golf, Terrain de golf, Parcours de golf"
                 },
+                "leisure/horse_riding": {
+                    "name": "Centre équestre",
+                    "terms": "Centre équestre, Écurie, Équitation."
+                },
                 "leisure/ice_rink": {
                     "name": "Patinoire",
                     "terms": "Patinoire"
@@ -3104,15 +3338,15 @@
                     "terms": "Aire de Jeu, Cour de récréation"
                 },
                 "leisure/resort": {
-                    "name": "Relaxation",
-                    "terms": "SPA,sona,détente"
+                    "name": "Complexe touristique",
+                    "terms": "Complexe hôtelier, Complexe touristique, Spa, détente, Relaxation, Station thermale."
                 },
                 "leisure/running_track": {
                     "name": "Piste de course à pied",
                     "terms": "Piste de course à pied"
                 },
                 "leisure/slipway": {
-                    "name": "Mise à l'eau",
+                    "name": "Cale de mise à l'eau",
                     "terms": "Cale de lancement, Cale, Cale de mise à l'eau, Rampe de mise à l'eau"
                 },
                 "leisure/sports_centre": {
@@ -3171,8 +3405,8 @@
                     "name": "Terre-plein"
                 },
                 "man_made/flagpole": {
-                    "name": "Hampe",
-                    "terms": "Hampe"
+                    "name": "Mât de drapeau",
+                    "terms": "Mât de drapeau, Hampe, Drapeau"
                 },
                 "man_made/gasometer": {
                     "name": "Gazomètre",
@@ -3223,7 +3457,8 @@
                     "terms": "caméra, vidéo"
                 },
                 "man_made/surveillance_camera": {
-                    "name": "Caméra de surveillance"
+                    "name": "Caméra de surveillance",
+                    "terms": "Caméra,Vidéosurveillance,Vidéoprotection"
                 },
                 "man_made/survey_point": {
                     "name": "Borne géodésique",
@@ -3246,52 +3481,20 @@
                     "terms": "Puits"
                 },
                 "man_made/water_works": {
-                    "name": "Station de pompage d'eau potable",
-                    "terms": "Station de pompage"
+                    "name": "Usine d'eau potable",
+                    "terms": "Usine d'eau potable"
                 },
                 "man_made/works": {
                     "name": "Usine",
-                    "terms": "usine, site industriel"
-                },
-                "military/airfield": {
-                    "name": "Aérodrome",
-                    "terms": "Terrain d'aviation,Aérodrome,Aéroport,Héliport"
-                },
-                "military/barracks": {
-                    "name": "Caserne",
-                    "terms": "Caserne"
-                },
-                "military/bunker": {
-                    "name": "Bunker",
-                    "terms": "casemate, blockhaus, bunker"
-                },
-                "military/checkpoint": {
-                    "name": "Poste de contrôle militaire",
-                    "terms": "Poste-frontière, Point de contrôle, Poste de contrôle,Militaire"
-                },
-                "military/danger_area": {
-                    "name": "Zone militaire dangereuse",
-                    "terms": "Zone dangereuse, Région dangereuse, Dangereuse, Danger,Militaire"
-                },
-                "military/naval_base": {
-                    "name": "Base navale",
-                    "terms": "Base Navale, Base militaire, Marine, Port maritime"
-                },
-                "military/obstacle_course": {
-                    "name": "Parcours du combattant",
-                    "terms": "Parcours du combattant, Course, Obstacles"
-                },
-                "military/range": {
-                    "name": "Stand de tir militaire",
-                    "terms": "Champ de tir,Stand de tir"
-                },
-                "military/training_area": {
-                    "name": "Zone d'entraînement militaire",
-                    "terms": "Zone d'entraînement"
+                    "terms": "Usine"
                 },
                 "natural": {
                     "name": "Nature",
                     "terms": "Nature"
+                },
+                "natural/bare_rock": {
+                    "name": "Zone Rocheuse",
+                    "terms": "Zone Rocheuse, Rochers"
                 },
                 "natural/bay": {
                     "name": "Baie",
@@ -3333,9 +3536,17 @@
                     "name": "Sommet",
                     "terms": "Pic, Mont"
                 },
+                "natural/ridge": {
+                    "name": "Ligne de crête",
+                    "terms": "Crête"
+                },
                 "natural/saddle": {
                     "name": "Col",
                     "terms": "Passe"
+                },
+                "natural/sand": {
+                    "name": "Sable",
+                    "terms": "Sable, Désert, Dunes"
                 },
                 "natural/scree": {
                     "name": "Pierrier",
@@ -3375,7 +3586,7 @@
                 },
                 "natural/water/reservoir": {
                     "name": "Bassin de retenue",
-                    "terms": "Reservoir"
+                    "terms": "Réservoir "
                 },
                 "natural/wetland": {
                     "name": "Zone humide",
@@ -3384,6 +3595,9 @@
                 "natural/wood": {
                     "name": "Bois",
                     "terms": "Bois"
+                },
+                "noexit/yes": {
+                    "name": "Sans issue"
                 },
                 "office": {
                     "name": "Bureau",
@@ -3405,9 +3619,13 @@
                     "name": "Bureau d'entreprise",
                     "terms": "Bureau d'entreprise, Siège social"
                 },
+                "office/coworking": {
+                    "name": "Espace de coworking",
+                    "terms": "Espace de bureau partagé, Espace de coworking."
+                },
                 "office/educational_institution": {
-                    "name": "Établissement d'enseignement",
-                    "terms": "Établissement d'enseignement"
+                    "name": "Bureau de l'établissement d'enseignement",
+                    "terms": "Bureau de l'établissement d'enseignement"
                 },
                 "office/employment_agency": {
                     "name": "Agence pour l'emploi",
@@ -3422,7 +3640,7 @@
                     "terms": "Bureau financier"
                 },
                 "office/government": {
-                    "name": "Établissement public",
+                    "name": "Administration publique",
                     "terms": "Bureau du gouvernement"
                 },
                 "office/government/register_office": {
@@ -3440,6 +3658,10 @@
                 "office/lawyer": {
                     "name": "Cabinet d'avocats",
                     "terms": "Cabinet d'avocats"
+                },
+                "office/lawyer/notary": {
+                    "name": "Notaire",
+                    "terms": "Notaire"
                 },
                 "office/newspaper": {
                     "name": "Journal",
@@ -3507,6 +3729,10 @@
                     "name": "Voisinage",
                     "terms": "Environs, Voisinage, Quartier"
                 },
+                "place/square": {
+                    "name": "Place",
+                    "terms": "Place, Placette"
+                },
                 "place/suburb": {
                     "name": "Quartier",
                     "terms": "Commune, Municipalité, District, Arrondissement, Bourough"
@@ -3537,6 +3763,10 @@
                 "power/minor_line": {
                     "name": "Ligne électrique mineure",
                     "terms": "Ligne électrique mineure"
+                },
+                "power/plant": {
+                    "name": "Centrale électrique",
+                    "terms": "Centrale électrique"
                 },
                 "power/pole": {
                     "name": "Poteau électrique",
@@ -3688,7 +3918,7 @@
                     "terms": "Vente de literie, Vente de matelas"
                 },
                 "shop/beverages": {
-                    "name": "Vente de boissons alcolisées",
+                    "name": "Magasin de boissons",
                     "terms": "Magasin de vins et spiritueux"
                 },
                 "shop/bicycle": {
@@ -3724,8 +3954,8 @@
                     "terms": "Magasin de pièces automobiles"
                 },
                 "shop/car_repair": {
-                    "name": "Garage",
-                    "terms": "Garage, atelier de mécanique automobile"
+                    "name": "Garage de réparation automobile",
+                    "terms": "Garage, Atelier de mécanique automobile, Atelier de réparation automobile"
                 },
                 "shop/carpet": {
                     "name": "Magasin de tapis",
@@ -3764,7 +3994,7 @@
                     "terms": "Confiserie"
                 },
                 "shop/convenience": {
-                    "name": "Supérette",
+                    "name": "Épicerie / Supérette ",
                     "terms": "Supérette, Petite épicerie du coin"
                 },
                 "shop/copyshop": {
@@ -3772,8 +4002,8 @@
                     "terms": "Photocopies, Impression"
                 },
                 "shop/cosmetics": {
-                    "name": "Parfumerie",
-                    "terms": "Vente de cosmétiques"
+                    "name": "Magasin de cosmétiques",
+                    "terms": "Vente de cosmétiques, Parfumerie"
                 },
                 "shop/craft": {
                     "name": "Magasin d'arts et loisirs créatifs",
@@ -3943,7 +4173,7 @@
                     "terms": "Vendeur de motocyclettes"
                 },
                 "shop/music": {
-                    "name": "Vente d'instruments de musique",
+                    "name": "Magasin de musique",
                     "terms": "Magasin de musique"
                 },
                 "shop/musical_instrument": {
@@ -4074,7 +4304,7 @@
                     "terms": "Vente de produits de nettoyage"
                 },
                 "shop/variety_store": {
-                    "name": "Supérette, Petite épicerie du coin",
+                    "name": "Magasin à prix unique",
                     "terms": "Épicerie"
                 },
                 "shop/video": {
@@ -4084,6 +4314,9 @@
                 "shop/video_games": {
                     "name": "Magasin de location et vente de jeux vidéo",
                     "terms": "Magasin de location et vente de jeux vidéo"
+                },
+                "shop/watches": {
+                    "name": "Magasin de montres"
                 },
                 "shop/water_sports": {
                     "name": "Vente d'équipements et d'articles pour sports nautiques",
@@ -4394,6 +4627,10 @@
                 "waterway/water_point": {
                     "name": "Eau potable",
                     "terms": "Eau potable"
+                },
+                "waterway/waterfall": {
+                    "name": "Cascade",
+                    "terms": "Cascade, Chute d'eau"
                 },
                 "waterway/weir": {
                     "name": "Seuil",

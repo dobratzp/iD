@@ -3,16 +3,19 @@ import _ from 'lodash';
 import osmAuth from 'osm-auth';
 import { JXON } from '../util/jxon';
 import { d3geoTile } from '../lib/d3.geo.tile';
-import { geoExtent } from '../geo/index';
-import { osmEntity, osmNode, osmRelation, osmWay } from '../osm/index';
-import { utilDetect } from '../util/detect';
-import { utilRebind } from '../util/rebind';
+import { geoExtent } from '../geo';
+import {
+    osmEntity,
+    osmNode,
+    osmRelation,
+    osmWay
+} from '../osm';
+
+import { utilRebind } from '../util';
 
 
 var dispatch = d3.dispatch('authLoading', 'authDone', 'change', 'loading', 'loaded'),
-    useHttps = window.location.protocol === 'https:',
-    protocol = useHttps ? 'https:' : 'http:',
-    urlroot = protocol + '//www.openstreetmap.org',
+    urlroot = 'https://www.openstreetmap.org',
     blacklists = ['.*\.google(apis)?\..*/(vt|kh)[\?/].*([xyz]=.*){3}.*'],
     inflight = {},
     loadedTiles = {},
@@ -25,6 +28,7 @@ var dispatch = d3.dispatch('authLoading', 'authDone', 'change', 'loading', 'load
         done: authDone
     }),
     rateLimitError,
+    userChangesets,
     userDetails,
     off;
 
@@ -70,6 +74,7 @@ function getTags(obj) {
         var attrs = elems[i].attributes;
         tags[attrs.k.value] = attrs.v.value;
     }
+
     return tags;
 }
 
@@ -160,6 +165,7 @@ export default {
 
 
     reset: function() {
+        userChangesets = undefined;
         userDetails = undefined;
         rateLimitError = undefined;
         _.forEach(inflight, abortRequest);
@@ -280,99 +286,47 @@ export default {
     },
 
 
-    // Generate Changeset XML. Returns a string.
-    changesetJXON: function(tags) {
-        return {
-            osm: {
-                changeset: {
-                    tag: _.map(tags, function(value, key) {
-                        return { '@k': key, '@v': value };
-                    }),
-                    '@version': 0.6,
-                    '@generator': 'iD'
-                }
-            }
-        };
-    },
+    putChangeset: function(changeset, changes, callback) {
 
-
-    // Generate [osmChange](http://wiki.openstreetmap.org/wiki/OsmChange)
-    // XML. Returns a string.
-    osmChangeJXON: function(changeset_id, changes) {
-        function nest(x, order) {
-            var groups = {};
-            for (var i = 0; i < x.length; i++) {
-                var tagName = Object.keys(x[i])[0];
-                if (!groups[tagName]) groups[tagName] = [];
-                groups[tagName].push(x[i][tagName]);
-            }
-            var ordered = {};
-            order.forEach(function(o) {
-                if (groups[o]) ordered[o] = groups[o];
-            });
-            return ordered;
-        }
-
-        function rep(entity) {
-            return entity.asJXON(changeset_id);
-        }
-
-        return {
-            osmChange: {
-                '@version': 0.6,
-                '@generator': 'iD',
-                'create': nest(changes.created.map(rep), ['node', 'way', 'relation']),
-                'modify': nest(changes.modified.map(rep), ['node', 'way', 'relation']),
-                'delete': _.extend(nest(changes.deleted.map(rep), ['relation', 'way', 'node']), {'@if-unused': true})
-            }
-        };
-    },
-
-
-    changesetTags: function(version, comment, imageryUsed) {
-        var detected = utilDetect(),
-            tags = {
-                created_by: ('iD ' + version).substr(0, 255),
-                imagery_used: imageryUsed.join(';').substr(0, 255),
-                host: detected.host.substr(0, 255),
-                locale: detected.locale.substr(0, 255)
-            };
-
-        if (comment) {
-            tags.comment = comment.substr(0, 255);
-        }
-
-        return tags;
-    },
-
-
-    putChangeset: function(changes, version, comment, imageryUsed, callback) {
-        var that = this;
+        // Create the changeset..
         oauth.xhr({
-                method: 'PUT',
-                path: '/api/0.6/changeset/create',
+            method: 'PUT',
+            path: '/api/0.6/changeset/create',
+            options: { header: { 'Content-Type': 'text/xml' } },
+            content: JXON.stringify(changeset.asJXON())
+        }, createdChangeset);
+
+
+        function createdChangeset(err, changeset_id) {
+            if (err) return callback(err);
+            changeset = changeset.update({ id: changeset_id });
+
+            // Upload the changeset..
+            oauth.xhr({
+                method: 'POST',
+                path: '/api/0.6/changeset/' + changeset_id + '/upload',
                 options: { header: { 'Content-Type': 'text/xml' } },
-                content: JXON.stringify(that.changesetJXON(that.changesetTags(version, comment, imageryUsed)))
-            }, function(err, changeset_id) {
-                if (err) return callback(err);
-                oauth.xhr({
-                    method: 'POST',
-                    path: '/api/0.6/changeset/' + changeset_id + '/upload',
-                    options: { header: { 'Content-Type': 'text/xml' } },
-                    content: JXON.stringify(that.osmChangeJXON(changeset_id, changes))
-                }, function(err) {
-                    if (err) return callback(err);
-                    // POST was successful, safe to call the callback.
-                    // Still attempt to close changeset, but ignore response because #2667
-                    // Add delay to allow for postgres replication #1646 #2678
-                    window.setTimeout(function() { callback(null, changeset_id); }, 2500);
-                    oauth.xhr({
-                        method: 'PUT',
-                        path: '/api/0.6/changeset/' + changeset_id + '/close',
-                        options: { header: { 'Content-Type': 'text/xml' } }
-                    }, function() { return true; });
-                });
-            });
+                content: JXON.stringify(changeset.osmChangeJXON(changes))
+            }, uploadedChangeset);
+        }
+
+
+        function uploadedChangeset(err) {
+            if (err) return callback(err);
+
+            // Upload was successful, safe to call the callback.
+            // Add delay to allow for postgres replication #1646 #2678
+            window.setTimeout(function() {
+                callback(null, changeset);
+            }, 2500);
+
+            // Still attempt to close changeset, but ignore response because #2667
+            oauth.xhr({
+                method: 'PUT',
+                path: '/api/0.6/changeset/' + changeset.id + '/close',
+                options: { header: { 'Content-Type': 'text/xml' } }
+            }, function() { return true; });
+        }
     },
 
 
@@ -407,6 +361,11 @@ export default {
 
 
     userChangesets: function(callback) {
+        if (userChangesets) {
+            callback(undefined, userChangesets);
+            return;
+        }
+
         this.userDetails(function(err, user) {
             if (err) {
                 callback(err);
@@ -417,11 +376,16 @@ export default {
                 if (err) {
                     callback(err);
                 } else {
-                    callback(undefined, Array.prototype.map.call(changesets.getElementsByTagName('changeset'),
+                    userChangesets = Array.prototype.map.call(
+                        changesets.getElementsByTagName('changeset'),
                         function (changeset) {
                             return { tags: getTags(changeset) };
                         }
-                    ));
+                    ).filter(function (changeset) {
+                        var comment = changeset.tags.comment;
+                        return comment && comment !== '';
+                    });
+                    callback(undefined, userChangesets);
                 }
             }
 
@@ -549,8 +513,10 @@ export default {
             loading: authLoading,
             done: authDone
         }, options));
+
         dispatch.call('change');
         this.reset();
+        this.userChangesets(function() {});  // eagerly load user details/changesets
         return this;
     },
 
@@ -569,6 +535,7 @@ export default {
 
 
     logout: function() {
+        userChangesets = undefined;
         userDetails = undefined;
         oauth.logout();
         dispatch.call('change');
@@ -577,12 +544,17 @@ export default {
 
 
     authenticate: function(callback) {
+        var that = this;
+        userChangesets = undefined;
         userDetails = undefined;
+
         function done(err, res) {
             rateLimitError = undefined;
             dispatch.call('change');
             if (callback) callback(err, res);
+            that.userChangesets(function() {});  // eagerly load user details/changesets
         }
+
         return oauth.authenticate(done);
     }
 };
